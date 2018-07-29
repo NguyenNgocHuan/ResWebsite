@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.ExportImport>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Nhập xuất kho</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Kho</li>
+        <li class="breadcrumb-item active" aria-current="page">Nhập xuất kho</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-lg-12">
+        <p>
+            <button class="btn btn-default"><a href="/Admin/ExportImports/Create/" style="text-decoration:none;">Tạo mới xuất nhập kho</a></button>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Tên nhân viên
+                </th>
+                <th>
+                    Loại
+                </th>
+                <th>
+                    Ngày tạo
+                </th>
+                <th>
+                    Mô tả
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExportImportType.TypeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateExportImport)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <button class="btn btn-default"><a href="/Admin/ExportImports/Edit/@item.ExportImportId" style="text-decoration:none;">Sửa</a></button>
+                        <button class="btn btn-default"><a href="/Admin/ExportImports/Details/@item.ExportImportId" style="text-decoration:none;">Xem</a></button>
+                        <button class="btn btn-default"><a href="/Admin/ExportImports/Delete/@item.ExportImportId" style="text-decoration:none;">Xóa</a></button>
+                        <button class="btn btn-default"><a href="/Admin/ExportImportDetails/Index/@item.ExportImportId" style="text-decoration:none;">Chi tiết nhập xuất</a></button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

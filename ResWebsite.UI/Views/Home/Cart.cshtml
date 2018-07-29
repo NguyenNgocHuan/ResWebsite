@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.ReservationContract>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+<section class="sections">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div id="contractmsg"></div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Reservated list
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Place.PlaceName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ReservationContractName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CreateDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ExpireDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EffectDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Place.PlaceName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ReservationContractName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreateDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ExpireDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EffectDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+
+                                    <td>
+                                        @if (item.Status == "Pending")
+                                        {
+                                            <button class="btn-danger" onclick="Cancel(@item.ReservationContractId)">Cancel</button>
+
+                                        }
+                                        <button class="btn-info" onclick="DetailContract(@item.ReservationContractId)">Detail</button>
+                                        @*@Html.ActionLink("Cancel", "CancelContract", new { id = item.ReservationContractId })*@
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!--End Advanced Tables -->
+        </div>
+    </div>
+</section>
+<script>
+
+    function DetailContract(id) {
+        window.location.href = "/Home/DetailContract?contractId=" + id;
+    }
+    function Cancel(id) {
+        $.ajax({
+            type: "GET",
+            async: false,
+            url: "/Home/CancelContract",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: {
+                contractId: id
+            },
+            success: function (data) {
+                if(data != -1){
+                    showAlert("#contractmsg", 1, data);
+                    setTimeout(function () {// wait for 5 secs(2)
+                        window.location.href = "/Home/Cart?cusId=" + $("#userid").text();
+                    }, 5000);
+                }
+                
+            else{
+                    showAlert("#contractmsg", 0,"Không thẻ hủy đơn đặt trước này! Phải hủy trước ngày tổ chức tiệc ít nhất 5 ngày!");
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Lỗi khi lấy danh sách món ăn đã đặt! Thử lại sau!" + errorThrown);
+            }
+        });
+        //window.location.href = "/Home/CancelContract?contractId=" + id;
+    }
+</script>
+<script src="~/Scripts/Home/show-alert.js"></script>

@@ -1,0 +1,59 @@
+﻿@model ResWebsite.DAL.Entity1.ChamCong
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChamCong</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.TenNhanVien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.TenNhanVien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaLamViec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaLamViec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianVao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianVao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiGianRa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiGianRa)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaChamCong }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

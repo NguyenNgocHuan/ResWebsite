@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QuanLyNhaHang" Class="ScriptFunctionsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\;Initial Catalog=QuanLyNhaHang;Integrated Security=True" SettingsObjectName="ResWebsite.DAL.Properties.Settings" SettingsPropertyName="QuanLyNhaHangConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.auto_maBinhLuan" Method="auto_maBinhLuan" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maVatTu" Method="auto_maVatTu" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maChamCong" Method="auto_maChamCong" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maDiaDiem" Method="auto_maDiaDiem" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maDichVu" Method="auto_maDichVu" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maHoaDonGoiMon" Method="auto_maHoaDonGoiMon" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maHoaDonNhapKho" Method="auto_maHoaDonNhapKho" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maHoaDonXuatKho" Method="auto_maHoaDonXuatKho" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maHopDongDatTiec" Method="auto_maHopDongDatTiec" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maKhachHang" Method="auto_maKhachHang" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maLuong" Method="auto_maLuong" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maMonAnThucUong" Method="auto_maMonAnThucUong" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maNghiepVu" Method="auto_maNghiepVu" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maNhaCungCap" Method="auto_maNhaCungCap" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maNhanVien" Method="auto_maNhanVien" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maQH" Method="auto_maQH" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maThucDon" Method="auto_maThucDon" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.auto_maCaLamViec" Method="auto_maCaLamViec" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+</Database>

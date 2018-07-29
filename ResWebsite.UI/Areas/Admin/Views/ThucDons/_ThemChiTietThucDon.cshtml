@@ -1,0 +1,179 @@
+﻿   <!-- Modal -->
+<style>
+    .zoom:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5); 
+}
+</style>
+<div class="modal fade" id="themChiTietThucDon" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Danh sách món ăn thức uống</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input id="txtInformationSearchCT" type="text" class="form-control" placeholder="Nhập tên món ăn thức uống" />
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" id="btnSearchCT">Tìm kiếm</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" id="btnResetSearchCT">Hủy tìm kiếm</button>
+                    </div>
+                </div><br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="group-tabs">
+                            <!-- Nav tabs -->
+
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="btnGetAllMealDrinks">Tất cả món ăn - thức uống</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" id="btnGetAllMeals">Món ăn</a></li>
+                                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" id="btnGetAllDrinks">Thức uống</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Tên món ăn thức uống
+                                                </th>
+                                                <th>
+                                                    Đơn giá
+                                                </th>
+                                                <th>
+                                                    Đơn vị
+                                                </th>
+                                                <th>
+                                                    Hình ảnh
+                                                </th>
+                                                <th>
+                                                    Phân loại
+                                                </th>
+                                                <th>
+                                                    Chọn
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listMonAnThucUongs"></tbody>
+                                    </table>
+                                    <div id="paginationCT" class="pagination">
+
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="profile">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Tên món ăn
+                                                </th>
+                                                <th>
+                                                    Đơn giá
+                                                </th>
+                                                <th>
+                                                    Đơn vị
+                                                </th>
+                                                <th>
+                                                    Hình ảnh
+                                                </th>
+                                                <th>
+                                                    Phân loại
+                                                </th>
+                                                <th>
+                                                    Chọn
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listMonAns"></tbody>
+                                    </table>
+                                    <div id="paginationMonAn" class="pagination">
+
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="messages">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Tên thức uống
+                                                </th>
+                                                <th>
+                                                    Đơn giá
+                                                </th>
+                                                <th>
+                                                    Đơn vị
+                                                </th>
+                                                <th>
+                                                    Hình ảnh
+                                                </th>
+                                                <th>
+                                                    Phân loại
+                                                </th>
+                                                <th>
+                                                    Chọn
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listThucUongs"></tbody>
+                                    </table>
+                                    <div id="paginationThucUong" class="pagination">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><hr />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <b>Danh sách các món đã chọn :</b>
+                        <hr />
+                    </div>
+                    <div class="col-lg-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Tên món ăn
+                                    </th>
+                                    <th>
+                                        Đơn giá
+                                    </th>
+                                    <th>
+                                        Đơn vị
+                                    </th>
+                                    <th>
+                                        Hình ảnh
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="listMonAnDaChons"></tbody>
+                        </table>
+                        <div id="paginationMonAnDaChon" class="pagination">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <b>Tổng tiền :</b>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+           </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btnSave">Lưu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

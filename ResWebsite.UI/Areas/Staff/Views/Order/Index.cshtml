@@ -1,0 +1,213 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.Place>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutOrderPage.cshtml";
+}
+
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">
+                Dashboard
+                <small>Summary of your App</small>
+            </h1>
+        </div>
+    </div>
+    <!-- /. ROW  -->
+
+    <div class="row" id="placeList">
+        @foreach (var i in Model.Where(x=>x.Seat <= 10))
+        {
+            if (i.Descriptions.Equals(""))
+            {
+                <div class="col-md-3 col-sm-12 col-xs-12" onclick="clickTable(@i.PlaceId);AddOrder(@i.PlaceId);" data-toggle="modal" data-target="#myModal" style="cursor: pointer">
+                    <div class="panel panel-primary text-center no-boder bg-color-green">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0;padding-right:0">
+                            <img src=@i.Picture alt=@i.PlaceName style="width:200px;height:150px;" />
+                        </div>
+                        <div class="panel-footer back-footer-green">
+                            @i.PlaceName - @i.Descriptions
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-3 col-sm-12 col-xs-12" onclick="clickTable(@i.PlaceId);ShowList(@i.PlaceId)" data-toggle="modal" data-target="#myModal" style="cursor: pointer">
+                    <div class="panel panel-primary text-center no-boder bg-color-green">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0;padding-right:0">
+                            <img src=@i.Picture alt=@i.PlaceName style="width:200px;height:150px;" />
+                        </div>
+                        <div class="panel-footer back-footer-red">
+                            Check out - @i.Descriptions
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+    </div>
+
+    <h4 id="placeID" hidden></h4>
+    <h4 id="orderID" hidden></h4>
+
+    <!-- /ROW -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="updatePage()" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Order To Table</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button type="button" class="btn btn-primary" onclick="Checkout($('#placeID').text())">Check out</button>
+                            <button type="button" class="btn btn-default" onclick="PrintOrder($('#placeID').text())">Print</button>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#tab1" data-toggle="tab">Meal-Drink information</a>
+                                </li>
+                                @*<li class="">
+                                        <a href="#tab2" data-toggle="tab">Drink information</a>
+                                    </li>*@
+                                <li class="">
+                                    <a href="#tab3" data-toggle="tab">Service information</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="tab1">
+                                    <h4>List of meal</h4>
+                                    <form role="form">
+                                        <div class="form-group input-group">
+                                            
+                                            <div class="form-group">
+                                                <input type="text" class="form-inline" id="mealname" placeholder="Meal ID">
+                                                <input type="number" class="form-inline quantitymeal" placeholder="Quantity" value="1">
+                                                <input type="text" class="form-inline note" placeholder="Note" value="none">
+                                                    <button class="btn btn-default" type="button" onclick="SearchMealId($('#mealname').val());">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!--    Hover Rows  -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading messagemeal">
+                                                    message
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover" id="mealTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Id</th>
+                                                                    <th>Quantity</th>
+                                                                    <th>Price</th>
+                                                                    <th>Note</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End  Hover Rows  -->
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="tab-pane fade" id="tab3">
+                                    <h4>List of service</h4>
+                                    <form role="form">
+                                        <div class="form-group input-group">
+                                            <div class="form-inline">
+                                                <input type="text" class="form-inline" placeholder="Service ID" id="servicename">
+                                                <input type="text" class="form-inline note" placeholder="Note" value="none">
+                                                <button class="btn btn-default" type="button" onclick="SearchServiceId($('#servicename').val());">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!--    Hover Rows  -->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading meassageservice">
+                                                    message
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover" id="serviceTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>Price</th>
+                                                                    <th>Quantity</th>
+                                                                    <th>Note</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End  Hover Rows  -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modals-->
+</div>
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/script.js"></script>
+<script src="~/Scripts/jquery.scrollTo.min.js"></script>
+<script src="~/Scripts/jquery.nicescroll.js"></script>
+<script src="~/Scripts/jquery.dcjqaccordion.2.7.js"></script>
+<script src="~/Scripts/jquery.fancybox.js"></script>
+<script src="~/Scripts/jquery.gritter.js"></script>
+<script src="~/Scripts/common-scripts.js"></script>
+@* script *@
+<script src="~/Scripts/Order/order-meal.js" defer></script>
+<script src="~/Scripts/Order/order-service.js"></script>
+<script>
+    function clickTable(id) {
+        $("#placeID").text(id);
+        $("#mealname").val("");
+        $("#servicename").val("");
+        $("#mealTable tbody").html("");
+        $("#serviceTable tbody").html("");
+        $("#messagedrink").text("");
+        $("#messagemeal").text("");
+        $("#messageservice").text("");
+        $("#mealname").focus();
+    }
+   
+
+   
+</script>
+@{
+    Html.RenderPartial("_PartialFooter");
+
+}

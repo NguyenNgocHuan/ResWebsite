@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.Salary>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Quản lý lương</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Nhân sự</li>
+        <li class="breadcrumb-item active" aria-current="page">Quản lý lương</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-lg-12">
+        <p>
+            <button class="btn btn-default"><a href="/Admin/Salaries/Create/" style="text-decoration:none;">Tạo khoản lương</a></button>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Tên nhân viên
+                </th>
+                <th>
+                    Lương cơ bản
+                </th>
+                <th>
+                    Thưởng
+                </th>
+                <th>
+                    Trợ cấp
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employee.EmployeeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BasicSalary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bonus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subsidy)
+                    </td>
+                    <td>
+                        <button class="btn btn-default"><a href="/Admin/Salaries/Edit/@item.SalaryId" style="text-decoration:none;">Sửa khoản lương</a></button>
+                        <button class="btn btn-default"><a href="/Admin/Salaries/Delete/@item.SalaryId" style="text-decoration:none;">Xóa khoản lương</a></button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

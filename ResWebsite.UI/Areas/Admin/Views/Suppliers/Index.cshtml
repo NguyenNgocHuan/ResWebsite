@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.Supplier>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Đối tác</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Nhà cung cấp</li>
+        <li class="breadcrumb-item active" aria-current="page">Đối tác</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-lg-12">
+
+        <p>
+            <button class="btn btn-default"><a href="/Admin/Suppliers/Create/" style="text-decoration:none;">Tạo mới đối tác</a></button>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Nhóm nhà cung cấp
+                </th>
+                <th>
+                    Tên nhà cung cấp
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplierType.SupplierName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @{
+                            if (@item.Status == 1)
+                            {
+                                <p>Đang theo dõi</p>
+                            }
+                            else
+                            {
+                                <p>Ngừng theo dõi</p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        <button class="btn btn-default"><a href="/Admin/Suppliers/Edit/@item.SupplierId" style="text-decoration:none;">Xem</a></button>
+                        <button class="btn btn-default"><a href="/Admin/Suppliers/Delete/@item.SupplierId" style="text-decoration:none;">Sửa</a></button>
+                        <button class="btn btn-default"><a href="/Admin/Suppliers/Delete/@item.SupplierId" style="text-decoration:none;">Xóa</a></button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

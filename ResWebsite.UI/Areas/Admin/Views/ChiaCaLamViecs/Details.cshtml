@@ -1,0 +1,51 @@
+﻿@model ResWebsite.DAL.Entity1.ChiaCaLamViec
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChiaCaLamViec</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CaLamViec.TenCaLamViec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaLamViec.TenCaLamViec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.TenNhanVien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.TenNhanVien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ngay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ngay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

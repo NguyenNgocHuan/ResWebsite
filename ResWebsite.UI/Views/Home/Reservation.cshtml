@@ -1,0 +1,802 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.ReservationContract>
+@{
+    ViewBag.Title = "Reservation";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+<style>
+    .myimg {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #f1f1f1;
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 50px auto;
+        font-family: Raleway;
+        padding: 40px;
+        min-width: 300px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        font-family: Raleway;
+        border: 1px solid #aaaaaa;
+    }
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+    /* Hide all steps by default: */
+    .tab {
+        display: none;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+
+    /* Make circles that indicate the steps of the form: */
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #4CAF50;
+        }
+</style>
+<!-- One "tab" for each step in the form: -->
+
+<form id="regForm" action="#">
+    <div id="msg">
+    </div>
+    <div class="tab">
+        <div class="alert alert-info">
+            <h4 class="alert-heading">Bước 1</h4>
+             Nhập thông tin khách hàng và thông tin đặt tiệc
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="contracttype">Loại sự kiện</label>
+            <div class="col-sm-10">
+                <select id="contracttype" class="form-control">
+                    <option value="1">Tiệc cưới</option>
+                    <option value="2">Party</option>
+                    <option value="3">Họp</option>
+                </select>
+                </div>
+            </div>
+        @if (ViewBag.name == "Guest" && ViewBag.id == 3)
+        {
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Họ tên khách hàng</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Nguyễn Văn A" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Địa chỉ</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dc" placeholder="23/1 Nguyễn Văn Trỗi, quận 1" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Số điện thoại</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="sdt" placeholder="09237823" required pattern="[0-9]{9,}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" placeholder="abc@gmail.com" required>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Họ tên khách hàng</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" value="@ViewBag.name" required disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Địa chỉ</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="dc" value="@ViewBag.diachi" required disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Số điện thoại</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="sdt" value="@ViewBag.sdt" required disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="name">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" value="@ViewBag.email" required disabled>
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="quan">Số lượng khách</label>
+
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="quan" focus required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="plandate">Thời gian tổ chức</label>
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <input type="datetime-local" class="form-control" id="plandate" />
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="tab">
+        <div class="alert alert-info">
+            <h4 class="alert-heading">Bước 2</h4>
+        Chọn thông tin loại bàn cho bữa tiệc  <br />
+        Số lượng bàn sẽ được tính tự động dựa theo số lượng khách tham dự (có thể tùy chọn thêm khi ký hợp đồng) mặc định số lượng khách cho mỗi bàn là 10 khách</div>
+        <div class="destination-places part">
+            
+            <div class="wrap">
+                <section class="tables text-center wow">
+                    @foreach (var i in ViewBag.placelist)
+                        {
+                            if (i.Seat > 20)
+                            {
+                        <div class='col-md-2 col-sm-3 col-xs-6 single_special'>
+                            <div class='single_special_img'>
+                                <img src=@i.Picture alt=@i.PlaceName class='img-thumbnail myimg' />
+                                <div class='single_special_overlay text-center' onclick="place(@i.PlaceId, @i.Price);">
+                                    <h3>@i.PlaceName</h3>
+                                    <div class='overlay_separetor'></div>
+                                    <h5> Có @i.Seat chỗ ngồi</h5>
+                                    <h5 class="seatAvai" style="color:#ff0000"> Còn @i.AvailableEat chỗ ngồi</h5>
+                                    <h3> @i.Price VND</h3>
+                                </div>
+                            </div>
+                        </div>
+                            }
+                        }
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="tab">
+        <style>
+            h3 {
+                color: #de8f00;
+            }
+        </style>
+        <div class="part">
+            <div class="checkbox">
+                <div class="alert alert-info">
+                <h4 class="alert-heading">Bước 3</h4>
+                Chọn dịch vụ muốn đặt trước cho sự kiện của bạn.
+                 <br /> Bỏ qua bước này nếu không cần thiết</div>
+                <div class="part">
+                    <h3>Dịch vụ dành cho họp, hội nghị</h3>
+                    <div class="conferenceservice row">
+                        <fieldset id="checkArray">
+                            @foreach (var i in ViewBag.conservicelist)
+                                {
+
+                                <div class='col-lg-2'>
+                                    <label><input type='checkbox' id=@i.ServiceId name="check" class="serviceclass" value='@i.ServiceId'>@i.ServiceName - @i.Price VND</label>
+                                </div>
+
+
+                                }
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="part">
+                    <h3>Dịch vụ dành cho lễ cưới</h3>
+                    <div class="weddingservice row">
+                        <fieldset id="checkArray">
+                            @foreach (var i in ViewBag.weddingservicelist)
+                                {
+                                <div class='col-lg-2'>
+                                    <label><input type='checkbox' id=@i.ServiceId class="serviceclass" value='@i.ServiceId'>@i.ServiceName - @i.Price VND</label>
+                                </div>
+                                }
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="part">
+                    <h3>Dịch vụ dành cho sự kiện</h3>
+                    <div class="eventservice row">
+                        <fieldset id="checkArray">
+                            @foreach (var i in ViewBag.eventservicelist)
+                                {
+                                <div class='col-lg-2'>
+                                    <label><input type='checkbox' id=@i.ServiceId class="serviceclass" value='@i.ServiceId'>@i.ServiceName - @i.Price VND</label>
+                                </div>
+                                }
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="orther">Other</label>
+                <textarea class="form-control" id="other" cols="20" rows="3" placeholder="Thông tin khác"></textarea>
+            </div>
+            <button type="button" onclick="showTab(3)">Chuyển sang đặt món</button>
+            @*<button type="button" onclick="showTab(4)">Chuyển sang thanh toán</button>*@
+        </div>
+
+    </div>
+    <div class="tab">
+        <div class="destination-places part">
+            <div class="wrap">
+                <div class="alert alert-info">
+                    <h4 class="alert-heading">Bước 4</h4>
+                    Chọn thông tin món đặt trước (số lượng mỗi món được đặt sẽ tương đương với số bàn đã đặt)
+                    <br />Bỏ qua bước này  nếu bạn chỉ muốn đặt bàn
+                </div>
+                <!--menu-->
+                <div class="menus_top_menu text-center wow">
+                    <h2>CHỌN THEO THỰC ĐƠN CÓ SẴN</h2>
+                    <div class="row">
+                        <div class="features_content text-center">
+                            <div class="col-md-4" id="1" data-toggle="modal" onclick="MenuDetail($(this).attr('id'));" data-target="#myMenu">
+                                <a style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                                    <img src="~/images/icon1.png" alt="" />
+                                    <h5>MENU 1</h5>
+                                    <p>Đặt trước phòng hoặc đặt trước món ăn cho tiệc cưới, hội nghị, sự kiện hay tiệc sinh nhật, thôi nôi,... </p>
+                                </a>
+                            </div>
+                            <div class="col-md-4" id="2" data-toggle="modal" onclick="MenuDetail($(this).attr('id'));" data-target="#myMenu">
+                                <a href="" style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                                    <img src="~/images/icon1.png" alt="" />
+                                    <h5>MENU 2</h5>
+                                    <p>Thông tin các món hoặc thực đơn vô cung đa dạng và phong phú cho bữa tiệc của bạn</p>
+                                </a>
+                            </div>
+                            <div class="col-md-4" id="5" data-toggle="modal" onclick="MenuDetail($(this).attr('id'));" data-target="#myMenu">
+                                <a onclick="" style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                                    <img src="~/images/icon1.png" alt="" />
+                                    <h5>MENU 3</h5>
+                                    <p>Danh sách thông tin các đơn đặt trước của bạn</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!--end menu-->
+                    <div class="menus_top_menu text-center wow">
+                        <h2>CHỌN THEO MÓN ĂN</h2>
+                        <ul>
+                            <li><a href="#khaiviarea" onclick="LoadKhaiVi();">Món khai vị</a></li>
+                            <li><a href="#monchinharea" onclick="LoadMonChinh();">Món chính</a></li>
+                            <li><a href="#trangmiengarea" onclick="LoadTrangMieng();">Món tráng miệng</a></li>
+                            <li><a href="#drinkarea" onclick="LoadDrink();">Thức uống</a></li>
+                        </ul>
+                    </div>
+                    <div class="main_menus">
+                        <div class="khaivi head_title text-center wow" style="display: block;">
+                            <div class="main_special text-center wow">
+                                @foreach (var i in ViewBag.KhaiVi)
+                                {
+
+                            <div class="col-md-2 col-sm-4 col-xs-6 single_special" data-toggle="modal" onclick="ShowDetail('@i.MealDrinkId');" data-target="#myModal">
+                                <div class="single_special_img">
+                                    <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                    <div class="single_special_overlay text-center">
+                                        <h3>@i.MealDrinkId - @i.Name</h3>
+                                        <div class="overlay_separetor"></div>
+
+                                        <p>@i.Price VND</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                                }
+
+                            </div>
+                            @* <div style="align-content:center"><label>Xem thêm ...</label></div>*@
+                        </div>
+                        <div class="monchinh head_title text-center wow" style="display: none;">
+                            <div class="text-center wow main_special">
+                                @foreach (var i in ViewBag.MonChinh)
+                                {
+
+                            <div class="col-md-2 col-sm-4 col-xs-6 single_special" data-toggle="modal" onclick="ShowDetail('@i.MealDrinkId');" data-target="#myModal">
+                                <div class="single_special_img">
+                                    <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                    <div class="single_special_overlay text-center">
+                                        <h3>@i.MealDrinkId - @i.Name</h3>
+                                        <div class="overlay_separetor"></div>
+
+                                        <p>@i.Price VND</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                                }
+
+                            </div>
+                            @*<div style="align-content:center"><label>Xem thêm ...</label></div>*@
+
+                        </div>
+                        <div class="trangmieng head_title text-center wow" style="display: none;">
+                            <div class="main_special text-center wow">
+                                @foreach (var i in ViewBag.TrangMieng)
+                                {
+
+                            <div class="col-md-2 col-sm-4 col-xs-6 single_special" data-toggle="modal" onclick="ShowDetail('@i.MealDrinkId');" data-target="#myModal">
+                                <div class="single_special_img">
+                                    <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                    <div class="single_special_overlay text-center">
+                                        <h3>@i.MealDrinkId - @i.Name</h3>
+                                        <div class="overlay_separetor"></div>
+
+                                        <p>@i.Price VND</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                                }
+
+                            </div>
+                            @*<div style="align-content:center"><label>Xem thêm ...</label></div>*@
+                        </div>
+                        <div class="nuocuong head_title text-center wow" style="display: none;">
+                            <div class="drink main_special text-center wow">
+                                @foreach (var i in ViewBag.Drinks)
+                                {
+                            <div class="col-md-2 col-sm-3 col-xs-6 single_special" data-toggle="modal" onclick="ShowDetail('@i.MealDrinkId');" data-target="#myModal">
+                                <div class="single_special_img">
+                                    <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                    <div class="single_special_overlay text-center">
+                                        <h3>@i.Name</h3>
+                                        <div class="overlay_separetor"></div>
+                                        <p>@i.Price VND</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                                }
+
+                            </div>
+                            @*<div style="align-content:center"><label>Xem thêm ...</label></div>*@
+                        </div>
+                    </div>
+                    <button type="button" onclick="showTab(4)"> Chuyển sang thanh toán</button>
+                </div>
+
+        </div>
+    </div>
+    <div class="tab">
+        <div class="alert alert-info">
+            <h4 class="alert-heading">Bước 5</h4>
+            Nhập thông tin thanh toán online <br />
+            NOTE: Bạn phải thanh toán 15% online tổng hóa đơn đặt trước để hoàn tất qua trình đặt bàn<br>
+            (Tổng thanh toán vẫn chưa bao gồm giá dịch vụ)
+        </div>
+        <div class="part">
+            <h2>Thanh toán online</h2>
+        </div>
+        <div class="container">
+            <div class="form-inline">
+                <p style="color:#ff0000">Tổng thanh toán vẫn chưa bao gồm giá dịch vụ</p>
+                <div class="col-sm-12">
+                    <img src="~/images/card/1.png" alt="ACB" />
+                    <img src="~/images/card/2.png" alt="Viettin" />
+                    <img src="~/images/card/3.png" alt="DongA" />
+                    <img src="~/images/card/4.png" alt="TP" />
+                </div>
+            </div>
+            <div class="form-inline">
+                <label class="control-label col-sm-2" for="number">Card number</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control txtbox" id="cardnumber" placeholder="Số thẻ" value="0983282" required>
+                </div>
+            </div>
+            <div class="form-inline">
+                <label class="control-label col-sm-2" for="date">Tổng tiền</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control txtbox" id="total" value="0" disabled>
+                </div>
+            </div>
+            <div class="form-inline">
+                <label class="control-label col-sm-2" for="date">Số tiền trả trước</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control txtbox" id="deposit" value="0" disabled>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="checkbox col-sm-offset-2">
+                    <label><input type="checkbox">Nhận cuộc gọi tư vấn</label>
+                </div>
+            </div>
+        </div>
+        <button type="button" onclick="test();">Submit</button>
+    </div>
+    <!--show menu detail-->
+    <div class="modal fade" id="myMenu" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Chi tiết thực đơn</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-responsive" id="menudetail">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Hình ảnh</th>
+                                <th>Tên món</th>
+                                <th>Mô tả</th>
+                                <th>Giá</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <input id="noteformeal" value="none" placeholder="Ghi chú" class="form-control" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" onclick="datThucDon(); showTab(4);" data-toggle="modal">Đặt thực đơn</button>
+                    <button type="button" class="btn btn-default" onclick="clearData()" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+    </div>
+
+    <div style="overflow:auto;">
+        <div style="float:right;">
+            @*<button type="button" id="prevBtn" onclick="nextPrev(-1)" hidden>Previous</button>*@
+            @*<button type="button" id="nextBtn" onclick="nextPrev(1)" hidden>Next</button>*@
+        </div>
+    </div>
+
+</form>
+<div id="a" hidden></div>
+@*place id*@
+<div id="p" hidden></div>
+<div id="service" hidden></div>
+<div id="meal" hidden></div>
+<div id="note" hidden></div>
+@*table quantity*@
+<div id="table" hidden></div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Chi tiết món ăn</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Thông tin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="" alt="" id="pic" /></td>
+                            <td>
+                                <label>ID</label>
+                                <p id="mealid"></p>
+                                <label>Tên món</label>
+                                <p id="name"></p>
+                                <label>Mô tả</label>
+                                <p id="des"></p>
+                                <label>Giá</label>
+                                <p id="price"></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input id="noteformeal" value="none" placeholder="Ghi chú" class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal"
+    onclick="getMealId($('#mealid').text(), $('#noteformeal').val(), $('#quan').val(), $('#price').text());
+    addInfo($('#mealid').text(), $('#name').text(), $('#price').text(), $('#des').text(), $('#noteformeal').val());" 
+                        data-target="#mycart" >Đặt món</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/Home/load-all-meal.js"></script>
+<script src="~/Scripts/Home/show-alert.js"></script>
+<!--show tab-->
+<script>
+                        var currentTab = 0; // Current tab is set to be the first tab (0)
+                        showTab(currentTab); // Display the crurrent tab
+
+                        function showTab(n) {
+                          // This function will display the specified tab of the form...
+                          var x = document.getElementsByClassName("tab");
+                          x[n].style.display = "block";
+                          x[n - 1].style.display = "none";
+                          //$("#deposit").val($("#deposit").val() + "000 VND");
+                          //$("#total").val($("#total").val() + "000 VND");
+                          //... and fix the Previous/Next buttons:
+                          //if (n == 0) {
+                          //  document.getElementById("prevBtn").style.display = "none";
+                          //} else {
+                          //  document.getElementById("prevBtn").style.display = "inline";
+                          //}
+                          //if (n == (x.length - 1)) {
+                          //    document.getElementById("nextBtn").innerHTML = "Submit";
+                              //$("#nextBtn").click(function () {
+                              //    //alert("Đã tạo đơn đặt trước thành công! Tiếp theo sẽ chuyển đến trang thông tin đơn đặt hàng!");
+                              //    test();
+                              //})
+                          //} else {
+                          //    document.getElementById("nextBtn").innerHTML = "Next";
+                          //}
+                          //... and run a function that will display the correct step indicator:
+                          fixStepIndicator(n)
+                        }
+
+                        function nextPrev(n) {
+                          // This function will figure out which tab to display
+                          var x = document.getElementsByClassName("tab");
+                          // Exit the function if any field in the current tab is invalid:
+                          if (n == 1 && !validateForm()) return false;
+                          // Hide the current tab:
+                          x[currentTab].style.display = "none";
+                          // Increase or decrease the current tab by 1:
+                          currentTab = currentTab + n;
+                          // if you have reached the end of the form...
+                          //if (currentTab >= x.length) {
+                            // ... the form gets submitted:
+                              document.getElementById("regForm").submit();
+                          //}
+                          // Otherwise, display the correct tab:
+                          showTab(currentTab);
+                        }
+
+                        function validateForm() {
+                          // This function deals with validation of the form fields
+                          var x, y, i, valid = true;
+                          x = document.getElementsByClassName("tab");
+                          y = x[currentTab].getElementsByTagName("input");
+                          // A loop that checks every input field in the current tab:
+                          for (i = 0; i < y.length; i++) {
+                            // If a field is empty...
+                            if (y[i].value == "") {
+                              // add an "invalid" class to the field:
+                              y[i].className += " invalid";
+                              // and set the current valid status to false
+                              valid = false;
+                            }
+                          }
+                          // If the valid status is true, mark the step as finished and valid:
+                          if (valid) {
+                            document.getElementsByClassName("step")[currentTab].className += " finish";
+                          }
+                          return valid; // return the valid status
+                        }
+
+                        function fixStepIndicator(n) {
+                          // This function removes the "active" class of all steps...
+                          var i, x = document.getElementsByClassName("step");
+                          for (i = 0; i < x.length; i++) {
+                            x[i].className = x[i].className.replace(" active", "");
+                          }
+                          //... and adds the "active" class on the current step:
+                          x[n].className += " active";
+                        }
+</script>
+
+<!--add reservation-->
+<script>
+    function checkQuantity() {
+        var quan = parseInt($("#quan").val()) + parseInt($("#quan").val() * 10 / 100);
+        $("#table").text(quan % 10 == 0 ? parseInt(quan / 10) : parseInt(quan / 10) + 1);
+    }
+    function checkDateTime() {
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/Contract/CheckDateTimeReservation",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: {
+                plandate: $("#plandate").val(),
+                typeId: $("#contracttype").val(),
+            },
+            success: function (data) {
+                if (data == -1) {
+                    showAlert("#msg", 0, "Ngày đã chọn " + $("#plandate").val() + "là ngày không hợp lệ!<br>" +
+                       " Số ngày yêu cầu khi đặt trước<br> 1.Tiệc cưới: 14 ngày<br> 2.Party: 7 ngày <br> 3.Hội nghị: 5 ngày");
+                } else if ($("#quan").val() == "") {
+                    checkDateTime();
+                } else {
+                    //$(".homemessage").text("Hợp lệ");
+                    showTab(1);
+
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                showAlert(0, "Lỗi!" + errorThrown);
+            }
+        });
+    }
+    $("#quan").change(function () {
+        checkQuantity();
+    })
+    $("#plandate").change(function () {
+        checkDateTime();
+    });
+    function place(id, price) {
+        $("#p").text(id);
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/Contract/CheckPlace",
+            contentType: "application/json; chakirset=utf-8",
+            dataType: "json",
+            data: {
+                placeId: $("#p").text(),
+                quantity: $("#quan").val()
+            },
+            success: function (data) {
+                if (data[1] != "") {
+                    showAlert("#msg", 1, data[0]);
+                    $("#total").val(parseFloat($("#total").val()) + $("#table").text() * parseFloat(price));
+                    $("#deposit").val(parseInt($("#total").val()) * 15 / 100);
+                    showTab(2);
+                } else {
+                    showAlert("#msg", 0, data[0]);
+                }
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                showAlert("#msg", 0, "Vui lòng chọn thông tin bàn đặt trước!");
+            }
+        });
+
+
+    }
+    function getMealId(id, note, quantity, price) {
+        $("#meal").text($("#meal").text() + id + ",");
+        $("#note").text($("#note").text() + note + ",");
+        $("#total").val(parseFloat($("#total").val()) + parseInt($("#table").text()) * parseFloat(price));
+        $("#deposit").val(parseInt($("#total").val()) * 15 / 100);
+    }
+    function test() {
+        showAlert("#msg", 1, "Đang tạo đơn đặt trước ...Vui lòng chờ!");
+        //var val = [];
+        var val = "";
+        $(':checkbox:checked').each(function (i) {
+            //val[i] = $(this).val();
+            $("#service").text($("#service").text() + $(this).val() + ",");
+        })
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/Contract/AddTempContract",
+            contentType: "application/json; chakirset=utf-8",
+            dataType: "json",
+            data: {
+                cardNumber: $("#cardnumber").val(),
+                deposit: $("#deposit").val(),
+                total: $("#total").val(),
+                cusId: $('#userid').text(),
+                type: $("#contracttype").val(),
+                plandate: $("#plandate").val(),
+                quantity: $("#quan").val(),
+                placeId: $("#p").text(),
+                s: $("#service").text(),
+                m: $("#meal").text(),
+                note: $("#note").text(),
+                email: $("#email").val()
+            },
+            success: function (data) {
+                if (data != null) {
+                    showAlert("#msg", 1, "Tạo đơn đặt bàn thành công! Vui lòng kiểm tra mail xác nhận đặt bàn!");
+                    if ($("#username").text() == "Guest") {
+                        
+                        window.location.href = "/Home/Index";
+                    } else {
+                        setTimeout(function () {// wait for 5 secs(2)
+                                window.location.href = "/Home/Cart?cusId=" + $("#userid").text();
+                            }, 3000);
+                        
+                    }
+                } else {
+                    showAlert("#msg", 0, "Vui lòng nhập đúng thông tin.");
+                }
+                clear();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                showAlert("#msg", 0, "Lỗi khi tạo đơn đặt trước!");
+            }
+        });
+
+    }
+    function addInfo(id, name, price, des, note) {
+        $("#tablecart tbody").append("<tr><td>" + id + "</td><td>" + name + "</td><td>" + price + "</td><td>" + des + "</td><td>" + note + "</td></tr>");
+    }
+    function clear() {
+        $("#a").text("");
+        $("#p").text("");
+        $("#service").text("");
+        $("#meal").text("");
+        $("#note").text("");
+        $("#table").text("");
+    }
+    function clearData() {
+        $("#meal").text("");
+        $("#note").text("");
+    }
+    function datThucDon() {
+        showAlert("#msg", 0, "Thêm thực đơn");
+        
+    }
+</script>

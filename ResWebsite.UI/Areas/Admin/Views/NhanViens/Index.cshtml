@@ -1,0 +1,103 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity1.NhanVien>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/plugins/bootbox.min.js"></script>
+<script src="~/Scripts/plugins/jquery.twbsPagination.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Controllers/nhanVienController.js"></script>
+<script>
+        var finder = new CKFinder();
+        $(document).ready(function () {
+            $('#btnSelectImage').on('click', function (e) {
+                e.preventDefault();
+
+                finder.selectActionFunction = function (url) {
+                    $('#txtHinhAnh').val(url);
+                    $("#imgImage").attr("src", url);
+                };
+                finder.popup();
+            })
+            $('#btnClearImage').on('click', function (e) {
+                e.preventDefault();
+                    $('#txtHinhAnh').val('');
+                    $("#imgImage").attr("src", '');
+            })
+
+            $('#btnSelectImageX').on('click', function (e) {
+                e.preventDefault();
+
+                finder.selectActionFunction = function (url) {
+                    $('#txtHinhAnhX').val(url);
+                    $("#imgImageX").attr("src", url);
+                };
+                finder.popup();
+            })
+            $('#btnClearImageX').on('click', function (e) {
+                e.preventDefault();
+                $('#txtHinhAnhX').val('');
+                $("#imgImageX").attr("src", '');
+            })
+        });
+</script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Nhân viên</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Nhân sự</li>
+        <li class="breadcrumb-item active" aria-current="page">Nhân viên</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-3">
+        <button id="btnThemNhanVien" class="btn btn-default" data-toggle="modal" data-target="#modalAddUpdate">Thêm nhân viên</button>
+    </div>
+    <div class="col-md-3">
+        <input id="txtInformationSearch" type="text" class="form-control" placeholder="Nhập tên nhân viên" />
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" id="btnSearch">Tìm kiếm</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" id="btnResetSearch">Hủy tìm kiếm</button>
+    </div>
+</div><br />
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên nhân viên
+                    </th>
+                    <th>
+                        Giới tính
+                    </th>
+                    <th>
+                        Hình ảnh
+                    </th>
+                    <th>
+                        Chức vụ
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="listNhanViens"></tbody>
+        </table>
+        <div id="pagination" class="pagination">
+
+        </div>
+    </div>
+</div>
+@RenderPage("_ThemNhanVien.cshtml")
+@RenderPage("_XemChiTietNhanVien.cshtml")

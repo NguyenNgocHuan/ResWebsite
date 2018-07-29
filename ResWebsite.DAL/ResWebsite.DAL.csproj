@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{98C04A83-866E-4894-8D2A-DA7EB10D8464}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ResWebsite.DAL</RootNamespace>
+    <AssemblyName>ResWebsite.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DAL\BinhLuanDAL.cs" />
+    <Compile Include="DAL\CaLamViecDAL.cs" />
+    <Compile Include="DAL\ChamCongDAL.cs" />
+    <Compile Include="DAL\ChiaCaLamViecDAL.cs" />
+    <Compile Include="DAL\ChiTietThucDonDAL.cs" />
+    <Compile Include="DAL\DiaDiemDAL.cs" />
+    <Compile Include="DAL\DichVuDAL.cs" />
+    <Compile Include="DAL\HopDongDAL.cs" />
+    <Compile Include="DAL\KhachHangDAL.cs" />
+    <Compile Include="DAL\MonAnThucUongDAL.cs" />
+    <Compile Include="DAL\NghiepVuDAL.cs" />
+    <Compile Include="DAL\NhanVienDAL.cs" />
+    <Compile Include="DAL\PhanQuyenDAL.cs" />
+    <Compile Include="DAL\QuyenHanDAL.cs" />
+    <Compile Include="DAL\RepositoryBase.cs" />
+    <Compile Include="DAL\ThucDonDAL.cs" />
+    <Compile Include="Entity1\BinhLuan.cs" />
+    <Compile Include="Entity1\CaLamViec.cs" />
+    <Compile Include="Entity1\ChamCong.cs" />
+    <Compile Include="Entity1\ChiaCaLamViec.cs" />
+    <Compile Include="Entity1\ChiTietDatTiecDichVu.cs" />
+    <Compile Include="Entity1\ChiTietDatTiecMonAnThucUong.cs" />
+    <Compile Include="Entity1\ChiTietGoiMonDichVu.cs" />
+    <Compile Include="Entity1\ChiTietGoiMonMonAnThucUong.cs" />
+    <Compile Include="Entity1\ChiTietHoaDonNhapKho.cs" />
+    <Compile Include="Entity1\ChiTietHoaDonXuatKho.cs" />
+    <Compile Include="Entity1\ChiTietThucDon.cs" />
+    <Compile Include="Entity1\DiaDiem.cs" />
+    <Compile Include="Entity1\DichVu.cs" />
+    <Compile Include="Entity1\HoaDonGoiMon.cs" />
+    <Compile Include="Entity1\HoaDonNhapKho.cs" />
+    <Compile Include="Entity1\HoaDonXuatKho.cs" />
+    <Compile Include="Entity1\HopDongDatTiec.cs" />
+    <Compile Include="Entity1\KhachHang.cs" />
+    <Compile Include="Entity1\Luong.cs" />
+    <Compile Include="Entity1\MonAnThucUong.cs" />
+    <Compile Include="Entity1\NghiepVu.cs" />
+    <Compile Include="Entity1\NhaCungCap.cs" />
+    <Compile Include="Entity1\NhanVien.cs" />
+    <Compile Include="Entity1\PhanQuyen.cs" />
+    <Compile Include="Entity1\QuyenHan.cs" />
+    <Compile Include="Entity1\ResDbContext.cs" />
+    <Compile Include="Entity1\ScriptFunctions.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScriptFunctions.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Entity1\ThucDon.cs" />
+    <Compile Include="Entity1\VatTu.cs" />
+    <Compile Include="Entity\Account_Log.cs" />
+    <Compile Include="Entity\Business.cs" />
+    <Compile Include="Entity\Customer.cs" />
+    <Compile Include="Entity\DataPoint.cs" />
+    <Compile Include="Entity\Employee.cs" />
+    <Compile Include="Entity\Employee_Activity_Log.cs" />
+    <Compile Include="Entity\ExportImport.cs" />
+    <Compile Include="Entity\ExportImportDetail.cs" />
+    <Compile Include="Entity\ExportImportType.cs" />
+    <Compile Include="Entity\GrantPermission.cs" />
+    <Compile Include="Entity\GrantShift.cs" />
+    <Compile Include="Entity\Item.cs" />
+    <Compile Include="Entity\MealDrink.cs" />
+    <Compile Include="Entity\MealDrinkType.cs" />
+    <Compile Include="Entity\Menu.cs" />
+    <Compile Include="Entity\Order.cs" />
+    <Compile Include="Entity\OrderMealDrinkDetail.cs" />
+    <Compile Include="Entity\OrderServiceDetail.cs" />
+    <Compile Include="Entity\Permission.cs" />
+    <Compile Include="Entity\Person.cs" />
+    <Compile Include="Entity\Place.cs" />
+    <Compile Include="Entity\PlaceType.cs" />
+    <Compile Include="Entity\ReservationBill.cs" />
+    <Compile Include="Entity\ReservationContract.cs" />
+    <Compile Include="Entity\ReservationMealDrinkDetail.cs" />
+    <Compile Include="Entity\ReservationServiceDetail.cs" />
+    <Compile Include="Entity\RestaurantDbContext.cs" />
+    <Compile Include="Entity\Salary.cs" />
+    <Compile Include="Entity\SaleContract.cs" />
+    <Compile Include="Entity\SaleContractDetail.cs" />
+    <Compile Include="Entity\Service.cs" />
+    <Compile Include="Entity\ServiceType.cs" />
+    <Compile Include="Entity\Shift.cs" />
+    <Compile Include="Entity\Supplier.cs" />
+    <Compile Include="Entity\SupplierType.cs" />
+    <Compile Include="Entity\TimeKeeping.cs" />
+    <Compile Include="Entity\Unit.cs" />
+    <Compile Include="Entity\WarehouseType.cs" />
+    <Compile Include="Implement\Account_LogImplement.cs" />
+    <Compile Include="Implement\CustomerImplement.cs" />
+    <Compile Include="Implement\EmployeeImplement.cs" />
+    <Compile Include="Implement\ExportImportImplement.cs" />
+    <Compile Include="Implement\ExportImportTypeImplement.cs" />
+    <Compile Include="Implement\ItemImplement.cs" />
+    <Compile Include="Implement\MealDrinkImplement.cs" />
+    <Compile Include="Implement\MenuImplement.cs" />
+    <Compile Include="Implement\OrderImplement.cs" />
+    <Compile Include="Implement\OrderMealDrinkDetailImplement.cs" />
+    <Compile Include="Implement\OrderServiceDetailImplement.cs" />
+    <Compile Include="Implement\PlaceImplement.cs" />
+    <Compile Include="Implement\ReservationBillImplement.cs" />
+    <Compile Include="Implement\ReservationContractImplement.cs" />
+    <Compile Include="Implement\ReservationMealDrinkDetailImplement.cs" />
+    <Compile Include="Implement\ReservationServiceDetailImplement.cs" />
+    <Compile Include="Implement\SaleContractDetailImplement.cs" />
+    <Compile Include="Implement\SaleContractImplement.cs" />
+    <Compile Include="Implement\ServiceImplement.cs" />
+    <Compile Include="Implement\SupplierImplement.cs" />
+    <Compile Include="Implement\TimeKeepingImplement.cs" />
+    <Compile Include="Interface1\ICaLamViec.cs" />
+    <Compile Include="Interface1\IChiaCaLamViec.cs" />
+    <Compile Include="Interface1\IDiaDiem.cs" />
+    <Compile Include="Interface1\IDichVu.cs" />
+    <Compile Include="Interface1\IKeThua.cs" />
+    <Compile Include="Interface1\IKhachHang.cs" />
+    <Compile Include="Interface1\IMonAnThucUong.cs" />
+    <Compile Include="Interface1\INghiepVu.cs" />
+    <Compile Include="Interface1\INhanVien.cs" />
+    <Compile Include="Interface1\IPhanQuyen.cs" />
+    <Compile Include="Interface1\IQuyenHan.cs" />
+    <Compile Include="Interface1\IRepositoryBase.cs" />
+    <Compile Include="Interface1\IThucDon.cs" />
+    <Compile Include="Interface\IAccount_Log.cs" />
+    <Compile Include="Interface\IBusiness.cs" />
+    <Compile Include="Interface\ICustomer.cs" />
+    <Compile Include="Interface\IEmployee.cs" />
+    <Compile Include="Interface\IEmployee_Activity_Log.cs" />
+    <Compile Include="Interface\IExportImport.cs" />
+    <Compile Include="Interface\IGrantPermission.cs" />
+    <Compile Include="Interface\IGrantShift.cs" />
+    <Compile Include="Interface\IItem.cs" />
+    <Compile Include="Interface\IMealDrink.cs" />
+    <Compile Include="Interface\IMenu.cs" />
+    <Compile Include="Interface\IExportImportType.cs" />
+    <Compile Include="Interface\IOrder.cs" />
+    <Compile Include="Interface\IOrderMealDrinkDetail.cs" />
+    <Compile Include="Interface\IOrderServiceDetail.cs" />
+    <Compile Include="Interface\IPermission.cs" />
+    <Compile Include="Interface\IPlace.cs" />
+    <Compile Include="Interface\IReservationBill.cs" />
+    <Compile Include="Interface\IReservationContract.cs" />
+    <Compile Include="Interface\IReservationMealDrinkDetail.cs" />
+    <Compile Include="Interface\IReservationServiceDetail.cs" />
+    <Compile Include="Interface\ISaleContract.cs" />
+    <Compile Include="Interface\ISaleContractDetail.cs" />
+    <Compile Include="Interface\IService.cs" />
+    <Compile Include="Interface\IServiceOrderDetail.cs" />
+    <Compile Include="Interface\IShift.cs" />
+    <Compile Include="Interface\ISupplier.cs" />
+    <Compile Include="Interface\ITimeKeeping.cs" />
+    <Compile Include="ObjectModel\BinhLuanModel.cs" />
+    <Compile Include="ObjectModel\CaLamViecModel.cs" />
+    <Compile Include="ObjectModel\ChamCongModel.cs" />
+    <Compile Include="ObjectModel\ChiaCaLamViecModel.cs" />
+    <Compile Include="ObjectModel\ChiTietMonAnThucUongModel.cs" />
+    <Compile Include="ObjectModel\ContractModel.cs" />
+    <Compile Include="ObjectModel\ItemObject.cs" />
+    <Compile Include="ObjectModel\LichLamViecModel.cs" />
+    <Compile Include="ObjectModel\PhanQuyenModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Entity1\ScriptFunctions.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ScriptFunctions.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entity1\ScriptFunctions.dbml.layout">
+      <DependentUpon>ScriptFunctions.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

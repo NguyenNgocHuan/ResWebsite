@@ -1,0 +1,186 @@
+﻿
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color:darkseagreen">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Trang chủ quản trị nhà hàng redrelvet</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                Xin chào nhân viên @Session["username"]
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Trang cá nhân</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/Admin/Home/Logout"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation" >
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <div>
+                                <div class="pull-left image">
+                                    <img src="@Session["picture"]" class="img-circle" alt="Hot girl" style="margin-top:10px" width="90" height="90">
+                                </div>
+                                <div>
+                                    <br /><br />
+                                    <p>@Session["fullname"]</p>
+                                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                                    <br /><br />
+                                </div>
+                            </div>
+
+                        </li>
+                        <li>
+                            <a href="/Admin/Home"><i class="fa fa-dashboard fa-fw"></i> Trang chủ</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users"></i> Nhân sự<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/NhanViens/Index">Quản lý nhân viên</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/GrantShifts/Index">Chia ca làm việc</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/TimeKeeping/Index">Chấm công</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Salaries/Index">Quản lý lương</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Salaries/Salaries">Xem lương</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Home/XemLichLamViec/@Session["userid"]">Xem lịch làm việc</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cogs"></i> Thiết lập hệ thống<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/Businesses"> Quản lý nghiệp vụ</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Employees/Roles">Phân quyền</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-list"></i> Thực đơn<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/ThucDons/Index">Nhóm thực đơn</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/MonAnThucUongs/Index">Món ăn - Thức uống</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="/Admin/DichVus/Index"><i class="fa fa-money"></i> Dịch vụ</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/DiaDiems/Index"><i class="fa fa-map-marker"></i> Địa điểm</a>
+                        </li>
+                         <li>
+                            <a href="#"><i class="glyphicon glyphicon-blackboard "></i> Nhà cung cấp<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/SupplierTypes/Index">Nhóm nhà cung cấp</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Suppliers/Index">Đối tác</a>
+                                </li>
+                                @*<li>
+                                    <a href="/Admin/MealDrinks/d">Lịch sử giao dịch</a>
+                                </li>*@
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-database"></i> Kho<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/Units/Index">Đơn vị tính</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/WarehouseTypes/Index">Kho nguyên vật liệu</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Items/Index">Nguyên vật liệu</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/MealDrinks/q">Nhập xuất kho</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/ExportImportTypes/Index">Loại nhập xuất kho</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Báo cáo<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/Admin/Menus/ged">Bán hàng</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/MealDrinks/dsa">Mua hàng</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/MealDrinks/edw">Kho</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/MealDrinks/sưd">Công nợ</a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/MealDrinks/sdd">Quỹ tiền </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/MealDrinks/aaq">Lợi nhuận</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="/Admin/ExportImports/Index" ><i class="glyphicon glyphicon-save"></i> Mua hàng</a>
+                        </li>
+                        <li>
+                            <a href="/Admin/ExportImports/đsx"><i class="glyphicon glyphicon-open"></i> Xuất hàng</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+

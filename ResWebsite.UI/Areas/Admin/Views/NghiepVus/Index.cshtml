@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity1.NghiepVu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/plugins/bootbox.min.js"></script>
+<script src="~/Scripts/plugins/jquery.twbsPagination.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Controllers/nghiepVuController.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Quản lý nghiệp vụ</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Thiết lập hệ thống</li>
+        <li class="breadcrumb-item active" aria-current="page">Quản lý nghiệp vụ</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-3">
+        <button id="btnCapNhatDanhSachNghiepVu" class="btn btn-success" data-toggle="modal" data-target="#modalAddUpdate">Cập nhật danh sách nghiệp vụ</button>
+    </div>
+    <div class="col-md-3">
+        <input id="txtInformationSearch" type="text" class="form-control" placeholder="Nhập tên nghiệp vụ" />
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" id="btnSearch">Tìm kiếm</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" id="btnResetSearch">Hủy tìm kiếm</button>
+    </div>
+</div><br />
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Mã nghiệp vụ
+                    </th>
+                    <th>
+                        Tên nghiệp vụ
+                    </th>
+                    <th>
+                        Chú thích
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="listNghiepVus"></tbody>
+        </table>
+        <div id="pagination" class="pagination">
+
+        </div>
+    </div>
+</div>
+@RenderPage("_XemChiTietNghiepVu.cshtml")

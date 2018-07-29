@@ -1,0 +1,74 @@
+﻿   <!-- Modal -->
+<style>
+    .zoom:hover {
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5); 
+}
+</style>
+<div class="modal fade" id="themDiaDiem" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông tin địa điểm</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="frmThemDiaDiem">
+                    <div class="form-group">
+                        <label for="txtTenDiaDiem">Tên địa điểm :</label>
+                        <input name="txtTenDiaDiem" id="txtTenDiaDiem" class="form-control"/>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="txtGiaTien">Giá tiền :</label>
+                        <input type="text" class="form-control" name="txtGiaTien" id="txtGiaTien">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtSoChoNgoi">Số chỗ ngồi :</label>
+                        <input type="text" name="txtSoChoNgoi" id="txtSoChoNgoi" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtSoChoConLai">Số chỗ còn lại :</label>
+                        <input  type="text" name="txtSoChoConLai" id="txtSoChoConLai" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtKhuVuc">Khu vực:</label>
+                        <select class="form-control" id="txtKhuVuc">
+                            <option value="" selected>Chọn khu vực</option>
+                            <option value="Sảnh A">Sảnh A</option>
+                            <option value="Sảnh B">Sảnh B</option>
+                            <option value="Sảnh C">Sảnh C</option>
+                            <option value="Sảnh D">Sảnh D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span style="float:left;width:280px;height:130px;;">
+                            <label for="txtHinhAnh">Hình ảnh :</label>
+                            <input type="text" class="form-control" name="txtHinhAnh" id="txtHinhAnh" readonly="readonly">
+                            <a id="btnSelectImage" class="btn btn-default" href="#">Chọn hình</a>
+                            <a id="btnClearImage" class="btn btn-default" href="#">Hủy chọn</a>
+                        </span>
+                        <span style="float:left;width:280px;height:130px;align-content:center;padding-right:50px;padding-top:20px;">
+                            <img id="imgImage" class="zoom" width="120" height="120" style="float:right;" />
+                        </span>
+                    </div><br /><br />
+                    
+                    <div class="form-group">
+                        <label for="txtMoTa">Trạng thái :</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="rdoTrangThai" id="rdoDangSuDung" value="Đang sử dụng">Đang sử dụng
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="rdoTrangThai" id="rdoDangSuDung" value="Ngừng sử dụng">Ngừng sử dụng
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btnSave">Lưu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>

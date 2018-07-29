@@ -1,0 +1,117 @@
+﻿<style>
+  .myimg{
+    width:180px;
+    height:180px;
+    
+}
+</style>
+    <section id="menus" class="menus sections">
+        <div class="container">
+            <div class="row">
+                <div class="main_menus">
+                    <div class="head_title text-center wow">
+                        <h2>Menu</h2>
+                        <div class="separetor"></div>
+                    </div>
+
+                    <div class="menus_top_menu text-center wow">
+                        <ul>
+                            <li class="active"><a href="">Thực đơn đặc biệt</a></li>
+                            <li><a href="#khaiviarea">Món khai vị</a></li>
+                            <li><a href="#monchinharea">Món chính</a></li>
+                            <li><a href="#trangmiengarea">Món tráng miệng</a></li>
+                            <li><a href="#drinkarea">Thức uống</a></li>
+                        </ul>
+                    </div>
+                    <div class="separetor"></div>
+   
+
+                    <h3 id="mealarea">Món ăn</h3>
+                    <h4 id="khaiviarea">Món khai vị</h4>
+                    <div class="khaivi main_special text-center wow">
+                        @foreach (var i in Model.Where(x => x.MenuId == 7 || x.MenuId == 8 || x.MenuId == 10))
+                        {
+
+                            <div class="col-md-2 col-sm-4 col-xs-6 single_special" onclick="AddToCart(@i.MealDrinkId);" data-toggle="modal" data-target="#myModal">
+                                <div class="single_special_img">
+                                    <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                    <div class="single_special_overlay text-center">
+                                        <h3>@i.Name</h3>
+                                        <div class="overlay_separetor"></div>
+
+                                        <p>@i.Price</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                        
+                    </div>
+                    <div style="align-content:center"><label>Xem thêm ...</label></div>
+                    <h4 id="monchinharea">Món chính</h4>
+                    <div class="text-center wow main_special" id="monchinh">
+                        @foreach (var i in Model.Where(x => x.MenuId == 1 || x.MenuId == 9 || x.MenuId == 11))
+                        {
+
+                            <div class="col-md-2 col-sm-4 col-xs-6 single_special" onclick="AddToCart(@i.MealDrinkId);" data-toggle="modal" data-target="#myModal">
+                                <div class="single_special_img">
+                                    <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                    <div class="single_special_overlay text-center">
+                                        <h3>@i.Name</h3>
+                                        <div class="overlay_separetor"></div>
+
+                                        <p>@i.Price</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                        
+                    </div>
+                    <div style="align-content:center"><label>Xem thêm ...</label></div>
+                    <h4 id="trangmiengarea">Món tráng miệng</h4>
+                    <div class="trangmieng main_special text-center wow">
+                        @foreach (var i in Model.Where(x => x.MenuId == 13))
+                        {
+
+                            <div class="col-md-2 col-sm-4 col-xs-6 single_special" onclick="AddToCart(@i.MealDrinkId);" data-toggle="modal" data-target="#myModal">
+                                <div class="single_special_img">
+                                    <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                    <div class="single_special_overlay text-center">
+                                        <h3>@i.Name</h3>
+                                        <div class="overlay_separetor"></div>
+
+                                        <p>@i.Price</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                        
+                    </div>
+                    <div style="align-content:center"><label>Xem thêm ...</label></div>
+                    <h3 id="drinkarea">Thức uống</h3>
+                    <div class="main_special text-center wow">
+                        @foreach (var i in Model.Where(x=>x.MenuId==4 || x.MenuId == 5 || x.MenuId == 6))
+                                {
+                            <div class="col-md-2 col-sm-3 col-xs-6 single_special" onclick="AddToCart(@i.MealDrinkId);" data-toggle="modal" data-target="#myModal">
+                                <div class="single_special_img">
+                                    <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                    <div class="single_special_overlay text-center">
+                                        <h3>@i.Name</h3>
+                                        <div class="overlay_separetor"></div>
+                                       @* <h5>@i.Descriptions</h5>*@
+                                        <p>@i.Price</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        }
+
+                    </div>
+                    <div style="align-content:center"><label>Xem thêm ...</label></div>
+                   
+                </div>
+            </div>
+        </div>
+    </section>

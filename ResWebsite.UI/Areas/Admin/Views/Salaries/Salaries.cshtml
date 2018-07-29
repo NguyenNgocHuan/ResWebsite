@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.Employee>
+
+@{
+    ViewBag.Title = "Salaries";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Tính lương</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Nhân sự</li>
+        <li class="breadcrumb-item active" aria-current="page">Tính lương</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-4">
+            <input type="number" name="txtMonth" id="txtMonth" class="form-control" placeholder="Nhập tháng" />
+        </div>
+        <div class="col-lg-4">
+            <input type="number" name="txtYear" id="txtYear" class="form-control" placeholder="Nhập năm" />
+        </div>
+        
+            <div class="col-lg-4">
+                <button class="btn btn-success" onclick="SearchSalaries('/Salaries/SearchSalaries/',$('txtMonth').val(),$('txtYear').val())">Xem lương</button>
+            </div><hr />
+            <table class="table">
+                <tr>
+                    <th>
+                        Tên nhân viên
+                    </th>
+                    <th>
+                        Địa chỉ
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Tổng thời gian làm việc trong tháng
+                    </th>
+                    <th>
+                        Lương
+                    </th>
+                    <th>
+                        Thưởng
+                    </th>
+                    <th>
+                        Trợ cấp
+                    </th>
+                    <th>
+                        Tổng
+                    </th>
+                    <td></td>
+                </tr>
+
+                @*@foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmployeeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.EmployeeId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })
+                        </td>
+                    </tr>
+                }*@
+
+            </table>
+        </div>
+</div>
+
+<script>
+    function SearchSalaries(action,month,year) {
+        $.ajax({
+            method: "GET",
+            url: action,
+            data: {
+                month: month,
+                year: year
+            },
+            success: function (data) {
+
+                alert("abc");
+
+            }
+        });
+    }
+</script>

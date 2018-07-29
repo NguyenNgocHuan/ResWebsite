@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.WarehouseType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Kho nguyên vật liệu</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Nguyên vật liệu</li>
+        <li class="breadcrumb-item active" aria-current="page">Kho nguyên vật liệu</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-lg-12">
+        <p>
+            <button class="btn btn-default"><a href="/Admin/WarehouseTypes/Create/" style="text-decoration:none;">Thêm kho</a></button>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Tên kho
+                </th>
+                <th>
+                   Mô tả
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WarehouseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <button class="btn btn-default"><a href="/Admin/WarehouseTypes/Edit/@item.WarehouseTypeId" style="text-decoration:none;">Xem</a></button>
+                        <button class="btn btn-default"><a href="/Admin/WarehouseTypes/Details/@item.WarehouseTypeId" style="text-decoration:none;">Sửa</a></button>
+                        <button class="btn btn-default"><a href="/Admin/WarehouseTypes/Delete/@item.WarehouseTypeId" style="text-decoration:none;">Xóa</a></button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

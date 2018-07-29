@@ -1,0 +1,51 @@
+﻿@model ResWebsite.DAL.Entity.Salary
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Salary</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BasicSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BasicSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bonus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bonus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subsidy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subsidy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SalaryId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

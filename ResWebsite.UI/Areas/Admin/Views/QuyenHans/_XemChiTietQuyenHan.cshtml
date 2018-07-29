@@ -1,0 +1,42 @@
+﻿   <!-- Modal -->
+<style>
+    .zoom:hover {
+        -ms-transform: scale(1.5); /* IE 9 */
+        -webkit-transform: scale(1.5); /* Safari 3-8 */
+        transform: scale(1.5);
+    }
+</style>
+<div class="modal fade" id="xemQuyenHan" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông tin quyền hạn</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="frmXemQuyenHan">
+                    <div class="form-group">
+                        <label for="txtTenQuyenHanX">Tên quyền hạn :</label>
+                        <input name="txtTenQuyenHanX" id="txtTenQuyenHanX" class="form-control" disabled="disabled"/>
+                        <div id="idTemp"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtMaNghiepVuX">Mã nghiệp vụ :</label>
+                        <input name="txtMaNghiepVuX" id="txtMaNghiepVuX" class="form-control"/>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txtMoTaX">Mô tả :</label>
+                        <input name="txtMoTaX" id="txtMoTaX" class="form-control" />
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btnSuaX">Sửa</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity1.DichVu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/plugins/bootbox.min.js"></script>
+<script src="~/Scripts/plugins/jquery.twbsPagination.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Controllers/dichVuController.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Dịch vụ</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item active" aria-current="page">Dịch vụ</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-3">
+        <button id="btnThemDichVu" class="btn btn-default" data-toggle="modal" data-target="#modalAddUpdate">Thêm dịch vụ</button>
+    </div>
+    <div class="col-md-3">
+        <input id="txtInformationSearch" type="text" class="form-control" placeholder="Nhập tên dịch vụ" />
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" id="btnSearch">Tìm kiếm</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" id="btnResetSearch">Hủy tìm kiếm</button>
+    </div>
+</div><br />
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên dịch vụ
+                    </th>
+                    <th>
+                        Giá tiền
+                    </th>
+                    <th>
+                        Loại dịch vụ
+                    </th>
+                    <th>
+                        Trạng thái
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="listDichVus"></tbody>
+        </table>
+        <div id="pagination" class="pagination">
+
+        </div>
+    </div>
+</div>
+@RenderPage("_ThemDichVu.cshtml")
+@RenderPage("_XemChiTietDichVu.cshtml")

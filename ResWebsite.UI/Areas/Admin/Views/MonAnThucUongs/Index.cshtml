@@ -1,0 +1,176 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity1.MonAnThucUong>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/plugins/bootbox.min.js"></script>
+<script src="~/Scripts/plugins/jquery.twbsPagination.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Controllers/monAnThucUongController.js"></script>
+<script>
+        var finder = new CKFinder();
+        $(document).ready(function () {
+            $('#btnSelectImage').on('click', function (e) {
+                e.preventDefault();
+
+                finder.selectActionFunction = function (url) {
+                    $('#txtHinhAnh').val(url);
+                    $("#imgImage").attr("src", url);
+                };
+                finder.popup();
+            })
+            $('#btnClearImage').on('click', function (e) {
+                e.preventDefault();
+                    $('#txtHinhAnh').val('');
+                    $("#imgImage").attr("src", '');
+            })
+
+            $('#btnSelectImageX').on('click', function (e) {
+                e.preventDefault();
+
+                finder.selectActionFunction = function (url) {
+                    $('#txtHinhAnhX').val(url);
+                    $("#imgImageX").attr("src", url);
+                };
+                finder.popup();
+            })
+            $('#btnClearImageX').on('click', function (e) {
+                e.preventDefault();
+                $('#txtHinhAnhX').val('');
+                $("#imgImageX").attr("src", '');
+            })
+        });
+</script>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Món ăn - Thức uống</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Thực đơn</li>
+        <li class="breadcrumb-item active" aria-current="page">Món ăn - Thức uống</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-3">
+        <button id="btnThemMonAnThucUong" class="btn btn-default" data-toggle="modal" data-target="#modalAddUpdate">Thêm món ăn thức uống</button>
+    </div>
+    <div class="col-md-3">
+        <input id="txtInformationSearch" type="text" class="form-control" placeholder="Nhập tên món ăn thức uống" />
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" id="btnSearch">Tìm kiếm</button>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-primary" id="btnResetSearch">Hủy tìm kiếm</button>
+    </div>
+</div><br />
+<div class="row">
+    <div class="col-lg-12">
+        <div class="group-tabs">
+            <!-- Nav tabs -->
+
+            <ul class="nav nav-tabs" role="tablist">
+
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" id="btnGetAllMealDrinks">Tất cả món ăn - thức uống</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" id="btnGetAllMeals">Món ăn</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" id="btnGetAllDrinks">Thức uống</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tên món ăn thức uống
+                                </th>
+                                <th>
+                                    Đơn giá
+                                </th>
+                                <th>
+                                    Đơn vị
+                                </th>
+                                <th>
+                                    Hình ảnh
+                                </th>
+                                <th>
+                                    Phân loại
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listMonAnThucUongs"></tbody>
+                    </table>
+                    <div id="pagination" class="pagination">
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tên món ăn
+                                </th>
+                                <th>
+                                    Đơn giá
+                                </th>
+                                <th>
+                                    Đơn vị
+                                </th>
+                                <th>
+                                    Hình ảnh
+                                </th>
+                                <th>
+                                    Phân loại
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listMonAns"></tbody>
+                    </table>
+                    <div id="paginationMonAn" class="pagination">
+
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Tên thức uống
+                                </th>
+                                <th>
+                                    Đơn giá
+                                </th>
+                                <th>
+                                    Đơn vị
+                                </th>
+                                <th>
+                                    Hình ảnh
+                                </th>
+                                <th>
+                                    Phân loại
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listThucUongs"></tbody>
+                    </table>
+                    <div id="paginationThucUong" class="pagination">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@RenderPage("_ThemMonAnThucUong.cshtml")
+@RenderPage("_XemChiTietMonAnThucUong.cshtml")

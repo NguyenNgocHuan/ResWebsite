@@ -1,0 +1,94 @@
+﻿ <!-- End of Banner Section -->
+<style>
+    #features{
+        background:none;
+    }
+</style>
+<section id="features" class="features sections">
+    <div class="container">
+        <div class="row">
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+                <div class="mySlides">
+                    <img src="~/images/icon/cardcash1.png" style="width:100%">
+                   
+                    </div>
+                </div>
+
+                <div class="mySlides">
+                    <img src="~/images/icon/Discount.jpg" style="width:100%">
+                    
+                </div>
+
+                <div class="mySlides">
+                    <img src="~/images/icon/qraved.jpg" style="width:100%">
+                    
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+            </div>
+            <!-- /Slide show-->
+        </div>
+       
+       
+   
+</section>
+ @*<div class="row">
+            <div class="features_content text-center">
+                <div class="col-md-4">
+                    <a onclick="Reserve()" style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                        <img src="~/images/icon1.png" alt="" />
+                        <h5>MENU 1</h5>
+                        <p>Đặt trước phòng hoặc đặt trước món ăn cho tiệc cưới, hội nghị, sự kiện hay tiệc sinh nhật, thôi nôi,... </p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#menus" style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                        <img src="~/images/icon1.png" alt="" />
+                        <h5>MENU 2</h5>
+                        <p>Thông tin các món hoặc thực đơn vô cungd đa dạng và phong phú cho bữa tiệc của bạn</p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a onclick="MyCart($('#userid').text())" style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                        <img src="~/images/icon1.png" alt="" />
+                       <h5>MENU 3</h5>
+                       <p>Danh sách thông tin các đơn đặt trước của bạn</p>
+                    </a>
+                </div>
+            </div>
+        </div>*@<!-- End of Abouts Section -->
+
+<div class="modal fade" id="myMenu" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Chi tiết thực đơn</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-responsive" id="menudetail">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên món</th>
+                            <th>Mô tả</th>
+                            <th>Giá</th>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <input id="noteformeal" value="none" placeholder="Ghi chú" class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal" onclick="getMenu()" data-toggle="modal">Đặt thực đơn</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+</div>

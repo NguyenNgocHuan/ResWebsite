@@ -1,0 +1,125 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #table tr:not(:first-child) {
+      //  cursor: pointer;
+        transition: all .1s ease-in-out;
+    }
+
+        #table tr:not(:first-child):hover {
+            background-color: #ddd;
+        }
+</style>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Chấm công</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Nhân sự</li>
+        <li class="breadcrumb-item active" aria-current="page">Chấm công</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-3">
+        <select class="form-control" id="txtChucVu">
+            <option value="">Chọn chức vụ nhân viên</option>
+            <option value="Quản lý">Nhân viên quản lý</option>
+            <option value="Nhân viên kho">Nhân viên kho</option>
+            <option value="Nhân viên tư vấn">Nhân viên tư vấn</option>
+            <option value="Nhân viên gọi món">Nhân viên gọi món</option>
+            <option value="Nhân viên bảo vệ">Nhân viên bảo vệ</option>
+            <option value="Nhân viên giao hàng">Nhân viên giao hàng</option>
+        </select>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" id="btnSearch">Tìm kiếm</button>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-primary" id="btnResetSearch">Hủy tìm kiếm</button>
+    </div>
+    <div class="col-md-2">
+        Chấm công ngày :
+    </div>
+    <div class="col-md-3">
+        <input type="date" id="txtNgayLamViec" class="form-control " disabled="disabled"/>
+    </div>
+</div><br /><hr />
+
+<div class="row">
+    <div class="col-lg-12">
+        <p id="tenNhanVien">Chấm công cho nhân viên : </p><div id="idTemp" hidden="hidden"></div>
+    </div>
+    <hr />
+    <div class="col-lg-12">
+            <p>Danh sách nhân viên</p>
+            <div>
+                <table class="table" id="table">
+                    <thead style="background-color:dodgerblue">
+                        <tr >
+                            <td>
+                                Mã nhân viên
+                            </td>
+                            <td>
+                                Tên nhân viên
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody id="listNhanViens" style="background-color:beige">
+                    </tbody>
+                </table>
+
+            </div>
+        </div><hr />
+    <div class="col-lg-12">
+            <p>Danh sách các ca làm việc</p>
+            <div>
+                <table class="table" id="tableCa">
+                    <thead style="background-color:dodgerblue">
+                        <tr>
+                            <td>
+                                Tên ca làm việc
+                            </td>
+                            <td>
+                                Thời gian vào
+                            </td>
+                            <td>
+                                Thời gian ra
+                            </td>
+                            <td>
+                                Đã chia ca
+                            </td>
+                            <td>
+                                Đúng giờ
+                            </td>
+                            <td>
+                                Đã chấm công
+                            </td>
+                            <td>
+                                Lưu
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody id="listCaLamViec" style="background-color:beige"></tbody>
+                </table>
+            </div>
+    </div>
+    
+   
+</div>
+<script src="~/Scripts/plugins/bootbox.min.js"></script>
+<script src="~/Scripts/plugins/jquery.twbsPagination.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Controllers/chamCongController.js"></script>
+<script>
+    document.querySelector("#txtNgayLamViec").valueAsDate = new Date();
+</script>

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.Item>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Nguyên vật liệu</h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Nguyên vật liệu</li>
+        <li class="breadcrumb-item active" aria-current="page">Nguyên vật liệu</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-lg-12">
+        <p>
+            <button class="btn btn-default"><a href="/Admin/Items/Create/" style="text-decoration:none;">Thêm mới</a></button>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Tên kho
+                </th>
+                <th>
+                    Tên vật tư
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Đơn vị
+                </th>
+                <th>
+                    Đơn giá
+                </th>
+                <th>
+                    Hạn sử dụng
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WarehouseType.WarehouseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Unit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpiryDate)
+                    </td>
+                    <td>
+                        <button class="btn btn-default"><a href="/Admin/Items/Edit/@item.ItemId" style="text-decoration:none;">Xem</a></button>
+                        <button class="btn btn-default"><a href="/Admin/Items/Details/@item.ItemId" style="text-decoration:none;">Sửa</a></button>
+                        <button class="btn btn-default"><a href="/Admin/Items/Delete/@item.ItemId" style="text-decoration:none;">Xóa</a></button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

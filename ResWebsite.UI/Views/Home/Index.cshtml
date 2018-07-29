@@ -1,0 +1,405 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity.MealDrink>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MyLayout.cshtml";
+}
+
+@{
+    Html.RenderPartial("_PartialSection");
+
+}
+<style>
+    body {
+        /*background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgVn8iWLT0fn7m_qmKDV33XXmd6MLI_PRBzfY21ExoTd-JmPJH') no-repeat;*/
+        background:url(../images/bannerbg.jpg);
+        background-size: 100%;
+        background-attachment: fixed;
+    }
+    #menusection{
+        /*background:#f3c30f;*/
+        background:#ff9829;
+    }
+    #about {
+        background-image: url('../../images/icon/bg2.jpg');
+        /*background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTP9ecdFrKvxjtEu0g9enajgFRmOUH40Q85rbkN0VNmRuRjcIBg7A') no-repeat;*/
+        background-size: 100%;
+    }
+    #contact{
+        color:black;
+    }
+</style>
+<div id="message"></div>
+<div id="searchresult"></div>
+
+<!--menu-->
+<div class="row" id="menusection">
+    <div class="features_content text-center">
+        <div class="col-md-4" id="1" data-toggle="modal" onclick="MenuDetail($(this).attr('id'));" data-target="#myMenu">
+            <a style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                <img src="~/images/icon1.png" alt="" />
+                <h5>MENU 1</h5>
+                <p>Thực đơn loại 1 dùng cho tiệc cưới</p>
+            </a>
+        </div>
+        <div class="col-md-4" id="2" data-toggle="modal" onclick="MenuDetail($(this).attr('id'));" data-target="#myMenu">
+            <a href="" style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                <img src="~/images/icon1.png" alt="" />
+                <h5>MENU 2</h5>
+                <p>Thực đơn loại cao cấp dùng cho tiệc cưới</p>
+            </a>
+        </div>
+        <div class="col-md-4" id="5" data-toggle="modal" onclick="MenuDetail($(this).attr('id'));" data-target="#myMenu">
+            <a onclick="" style="text-decoration: none;" class="sinle_features wow slideInUp" data-wow-duration="1s">
+                <img src="~/images/icon1.png" alt="" />
+                <h5>MENU 3</h5>
+                <p>Thực đơn loại cao cấp dùng cho tiệc sinh nhật</p>
+            </a>
+        </div>
+    </div>
+</div>
+<!--end menu-->
+    <style>
+            .myimg {
+                width: 200px;
+                height: 200px;
+            }
+
+        * {box-sizing: border-box}
+        .mySlides {display: none}
+        .mySlides > img {
+            max-height: 350px;
+        }
+        img {vertical-align: middle;}
+
+        /* Slideshow container */
+        .slideshow-container {
+          max-width: 1000px;
+          position: relative;
+          margin: auto;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          width: auto;
+          padding: 16px;
+          margin-top: -22px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          transition: 1s ease-in;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+          right: 0;
+          border-radius: 3px 0 0 3px;
+        }
+        .prev {
+          left: 0;
+          border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a grey background color */
+        .prev:hover, .next:hover {
+          background-color: #f1f1f1;
+          color: black;
+        }
+    </style>
+    <div id="msg"></div>
+<!--Show room list-->
+<div id="rooms" class="menus sections">
+    <div class="container">
+        <div class="row">
+            <div class="menus_top_menu text-center wow">
+                <h2>DANH SÁCH PHÒNG</h2>
+                <div class="separetor"></div>
+            </div>
+                <div class="head_title text-center wow">
+                    <div class="text-center wow" id="phongs">
+                      <!---->
+                        @foreach(var i in ViewBag.placelist) { 
+                        <div class='col-md-2 col-sm-4 col-xs-6 single_special'>
+                            <div class='single_special_img'>
+                                <img src=@i.Picture alt=@i.PlaceName class='img-thumbnail myimg' />
+                                <div class='single_special_overlay text-center'>
+                                    <h3>@i.PlaceName</h3>
+                                    <div class='overlay_separetor'></div>
+                                    <p>@i.Seat chỗ</p>
+                                    <p>@i.Price</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<!--end-->
+<!--Show meal/drink list-->
+    <section id="menus" class="menus sections">
+        <div class="container">
+
+            <div class="row menu">
+
+                <div class="menus_top_menu text-center wow">
+                    <h2>THỰC ĐƠN</h2>
+                    <div class="separetor"></div>
+                    <ul>
+                        @*<li><a href="#all" onclick="LoadAllMeal();">Thực đơn</a></li>*@
+                        <li class="active"><a href="#khaiviarea" onclick="LoadKhaiVi();">Món khai vị</a></li>
+                        <li><a href="#monchinharea" onclick="LoadMonChinh();">Món chính</a></li>
+                        <li><a href="#trangmiengarea" onclick="LoadTrangMieng();">Món tráng miệng</a></li>
+                        <li><a href="#drinkarea" onclick="LoadDrink();">Thức uống</a></li>
+                    </ul>
+                </div>
+
+                <div class="main_menus">
+                    <div class="khaivi head_title text-center wow">
+                        <div class="main_special text-center wow">
+                            @foreach (var i in Model.Where(x => x.MenuId == 7 || x.MenuId == 8 || x.MenuId == 10))
+                        {
+
+                        <div class="col-md-2 col-sm-4 col-xs-6 single_special" data-toggle="modal" onclick="ShowDetail('@i.MealDrinkId');" data-target="#myModal">
+                            <div class="single_special_img">
+                                <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                <div class="single_special_overlay text-center">
+                                    <h3>@i.Name</h3>
+                                    <div class="overlay_separetor"></div>
+
+                                    <p>@i.Price VND</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        }
+
+                        </div>
+                    </div>
+                    <div class="monchinh head_title text-center wow" style="display: none;">
+                        <div class="text-center wow main_special">
+                            @foreach (var i in Model.Where(x => x.MenuId == 1 || x.MenuId == 9 || x.MenuId == 11))
+                        {
+
+                        <div class="col-md-2 col-sm-4 col-xs-6 single_special" data-toggle="modal" onclick="ShowDetail('@i.MealDrinkId');" data-target="#myModal">
+                            <div class="single_special_img">
+                                <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                <div class="single_special_overlay text-center">
+                                    <h3>@i.Name</h3>
+                                    <div class="overlay_separetor"></div>
+
+                                    <p>@i.Price VND</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        }
+
+                        </div>
+
+
+                    </div>
+                    <div class="trangmieng head_title text-center wow" style="display: none;">
+                        <div class="main_special text-center wow">
+                            @foreach (var i in Model.Where(x => x.MenuId == 13))
+                        {
+
+                        <div class="col-md-2 col-sm-4 col-xs-6 single_special" data-toggle="modal" onclick="ShowDetail('@i.MealDrinkId');" data-target="#myModal">
+                            <div class="single_special_img">
+                                <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                <div class="single_special_overlay text-center">
+                                    <h3>@i.Name</h3>
+                                    <div class="overlay_separetor"></div>
+
+                                    <p>@i.Price VND</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        }
+
+                        </div>
+                    </div>
+                    <div class="nuocuong head_title text-center wow" style="display: none;">
+                        <div class="drink main_special text-center wow">
+                            @foreach (var i in Model.Where(x => x.MenuId == 4 || x.MenuId == 5 || x.MenuId == 6))
+                        {
+                        <div class="col-md-2 col-sm-3 col-xs-6 single_special" data-toggle="modal" onclick="ShowDetail('@i.MealDrinkId');" data-target="#myModal">
+                            <div class="single_special_img">
+                                <img src=@i.Picture alt=@i.Name class="img-thumbnail myimg" />
+                                <div class="single_special_overlay text-center">
+                                    <h3>@i.Name</h3>
+                                    <div class="overlay_separetor"></div>
+                                    @* <h5>@i.Descriptions</h5>*@
+                                    <p>@i.Price VND</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        }
+
+                        </div>
+                        @*<div style="align-content:center"><label>Xem thêm ...</label></div>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<!--end-->
+    <!-- Begin meal detail info modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Chi tiết món ăn</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Thông tin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="" alt="" id="pic" /></td>
+                                <td>
+                                    <label>Tên món</label>
+                                    <p id="name"></p>
+                                    <label>Mô tả</label>
+                                    <p id="des"></p>
+                                    <label>Giá</label>
+                                    <p id="price"></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button data-toggle="modal" class="btn btn-default" onclick="Reserve();">Đặt bàn ngay</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End modal -->
+   
+    <!-- footer Section -->
+    @{
+        Html.RenderPartial("_PartialAbout");
+        Html.RenderPartial("_PartialBanner");
+        Html.RenderPartial("_PartialFooter");
+    }
+
+    <div id="case" hidden></div>
+    <div id="contractid"></div>
+    <div id="mealid" hidden></div>
+
+    <script>
+            function Anonymous() {
+        $("#username").text("3");
+        $("#userid").text("Guest");
+    }
+            function Reserve() {
+                $("#case").text("0");
+                $("#myModal").modal('hide');
+                var username = $("#username").text();
+                var userid = $("#userid").text();
+                if (username == "" || userid == "") {
+                    $("#login").modal('show');
+                } else {
+                    $("#name").val(username);
+                    window.location.href = "/Home/Reservation";
+                }
+            }
+            function MyCart(id) {
+                $("#case").text("1");
+                var username = $("#username").text();
+                var userid = id;
+                if (username == "" || userid == "") {
+                    $("#login").modal('show');
+                }else if (name == "Guest") {
+                    showAlert("#message", 0, "Đăng nhập để xem danh sách món đã đặt");
+                    
+                } else {
+                    window.location.href = "/Home/Cart?cusId=" + id;
+                }
+            }
+            function Login(name) {
+                if (name == "Guest" && $("#case").text() == "1") {
+                    showAlert("#msg", 2, "Đăng nhập để xem lịch sử đặt tiệc");
+                    
+                } else {
+                    $.ajax({
+                        type: "GET",
+                        async: true,
+                        url: "/Home/CheckLogin",
+                        contentType: "application/json; chakirset=utf-8",
+                        dataType: "json",
+                        data: {
+                            email: name
+                        },
+                        success: function (data) {
+                            if (data != null) {
+                                //$("#name").val($("#username").text());
+                                if ($("#case").text() == "0") {
+                                    window.location.href = "/Home/Reservation";
+                                }
+                                else if ($("#case").text() == "1") {
+                                    window.location.href = "/Home/Cart?cusId=" + data.CustomerId;
+                                } else {
+                                    $("#login").modal('hide');
+                                    $("#username").text(data.Name);
+                                    $("#userid").text(data.CustomerId);
+                                }
+                            } else {
+                                showAlert("#message", 0,"Không tồn tại thông tin email. Vui lòng nhập lại.");
+                            }
+
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("Vui lòng nhập đúng thông đúng đăng nhập!" + errorThrown);
+                        }
+                    });
+                }
+
+            }
+           
+    </script>
+    <!--Script for slide show-->
+    <script>
+    var slideIndex = [1, 1];
+    var slideId = ["mySlides"];
+    showSlides(1, 0);
+    showSlides(1, 1);
+
+    function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+    }
+
+    function showSlides(n, no) {
+        var i;
+        var x = document.getElementsByClassName(slideId[no]);
+        if (n > x.length) { slideIndex[no] = 1 }
+        if (n < 1) { slideIndex[no] = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex[no] - 1].style.display = "block";
+    }
+    </script>
+<!--show place list-->
+
+    <script src="~/Scripts/Home/load-all-meal.js"></script>
+    <script src="~/Scripts/Home/add-to-cart.js"></script>
+<script src="~/Scripts/Home/show-alert.js"></script>

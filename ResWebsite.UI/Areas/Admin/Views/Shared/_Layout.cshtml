@@ -1,0 +1,23 @@
+﻿@{
+    if (Session["userId"] == null)
+    {
+        Response.Redirect("~/Admin/Home/Login");
+    }
+}
+@RenderPage("_Top.cshtml")
+
+@RenderPage("_Left.cshtml")
+@RenderPage("_Right.cshtml")
+<div id="page-wrapper">
+    @RenderBody()
+</div>
+<!-- /#page-wrapper -->
+@RenderPage("_Bottom.cshtml")
+@RenderSection("scripts", required: false)
+<script>
+        window.setInterval(function () {
+            $.get("/Admin/Home/Alive", function (data) {
+
+            });
+        }, 180000);
+</script>

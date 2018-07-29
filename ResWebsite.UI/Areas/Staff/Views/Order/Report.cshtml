@@ -1,0 +1,63 @@
+﻿
+
+
+@{
+
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_LayoutOrderPage.cshtml";
+    
+}
+ 
+
+@*<script type="text/javascript">
+    $(function () {
+        debugger;
+        $.ajax(
+        {
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json',
+            url: '/Order/GetPiechartData',
+            data: '{}',
+            success: function (response) {
+                alert("oko");
+                Morris.Donut({
+                    element: 'myChart',
+                    data: response
+                });
+            },
+
+            error: function () {
+                alert("Error loading data! Please try again.");
+            }
+        });
+    })
+</script>*@
+<section class="sections" style="margin-top:0px">
+    <div id="chartContainer"></div>
+</section>
+<div style="margin-top:500px">
+    <h3 style="color:#0094ff">Tổng doanh thu: @ViewBag.TotalDaily VND</h3>
+</div>
+<script type="text/javascript">
+
+	window.onload = function () {
+		var chart = new CanvasJS.Chart("chartContainer", {
+			theme: "theme2",
+			animationEnabled: true,
+			title: {
+			    text: "Revenue daily report @DateTime.Now"
+			},
+			subtitles: [
+				{ text: "by Red velvet restaurant" }
+			],
+			data: [
+			{
+				type: "line", //change type to bar, line, area, pie, etc
+				dataPoints: @Html.Raw(ViewBag.DataPoints),
+			}
+			]
+		});
+		chart.render();
+	};
+</script>

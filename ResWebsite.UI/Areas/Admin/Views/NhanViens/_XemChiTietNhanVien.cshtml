@@ -1,0 +1,93 @@
+﻿   <!-- Modal -->
+<style>
+    .zoom:hover {
+        -ms-transform: scale(1.5); /* IE 9 */
+        -webkit-transform: scale(1.5); /* Safari 3-8 */
+        transform: scale(1.5);
+    }
+</style>
+<div class="modal fade" id="xemNhanVien" role="dialog">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thông tin nhân viên</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="frmXemNhanVien">
+                    <div class="form-group">
+                        <label for="txtTenNhanVienX">Tên nhân viên :</label>
+                        <input name="txtTenNhanVienX" id="txtTenNhanVienX" class="form-control" />
+                        <div id="idTemp" hidden></div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="rdoGioiTinh">Giới tính :</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="rdoGioiTinhX" id="rdoNamX" value="true">Nam
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="rdoGioiTinhX" id="rdoNuX" value="false">Nữ
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNgaySinhX">Ngày sinh :</label>
+                        <input type="date" class="form-control" name="txtNgaySinhX" id="txtNgaySinhX">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtDiaChiX">Địa chỉ :</label>
+                        <textarea name="txtDiaChiX" id="txtDiaChiX" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtSoDienThoaiX">Số điện thoại :</label>
+                        <input type="text" name="txtSoDienThoaiX" id="txtSoDienThoaiX" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtChucVuX">Chức vụ :</label>
+                        <select class="form-control" id="txtChucVuX">
+                            <option value="">Chọn chức vụ</option>
+                            <option value="Quản lý">Quản lý</option>
+                            <option value="Nhân viên kho">Nhân viên kho</option>
+                            <option value="Nhân viên tư vấn">Nhân viên tư vấn</option>
+                            <option value="Nhân viên gọi món">Nhân viên gọi món</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span style="float:left;width:280px;height:130px;">
+                            <label for="txtHinhAnh">Hình ảnh :</label>
+                            <input type="text" class="form-control" name="txtHinhAnhX" id="txtHinhAnhX" readonly="readonly">
+                            <a id="btnSelectImageX" class="btn btn-default" href="#">Chọn hình</a>
+                            <a id="btnClearImageX" class="btn btn-default" href="#">Hủy chọn</a>
+                        </span>
+                        <span style="float:left;width:280px;height:130px;align-content:center;padding-right:50px;padding-top:20px;">
+                            <img id="imgImageX" class="zoom" width="120" height="120" style="float:right;" />
+                        </span>
+                    </div><br /><br />
+
+                    <div class="form-group">
+                        <label for="txtMoTa">Trạng thái :</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="rdoTrangThaiX" id="rdoBiKhoaX" value="0">Bị khóa
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="rdoTrangThaiX" id="rdoDangHoatDongX" value="1">Đang hoạt động
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtTenDangNhapX">Tên đăng nhập :</label>
+                        <input type="text" name="txtTenDangNhapX" id="txtTenDangNhapX" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmailX">Email :</label>
+                        <input type="text" name="txtEmailX" id="txtEmailX" class="form-control" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btnSuaX">Sửa</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+

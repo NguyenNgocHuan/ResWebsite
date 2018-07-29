@@ -1,0 +1,141 @@
+﻿
+<section id="about" class="abouts sections">
+    <div class="container">
+        <div class="row">
+            <div class="main_abouts">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="single_abouts wow slideInLeft" data-wow-duration="2s">
+                        <div class="head_title text-center">
+                            <h2 style="color:white">Bình luận</h2>
+                            @*<div class="separetor"></div>*@
+                        </div>
+
+                        <div class="form-group col-md-10">
+                            <div class="col-md-10">
+                                <textarea rows="3" class="form-control" id="content" placeholder="Nội dung bình luận"></textarea>
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-info" style="margin-top:0" onclick="AddComment($('#content').val())">Bình luận</button>
+                            </div>
+                        </div>
+                        <br />
+                        <hr />
+                        <br />
+                        <h3 style="color:white">Các bình luận khác</h3>
+                        <div id="comments">
+                            <div class='row col-md-12'>
+                                <div class='panel panel-white post panel-shadow col-md-12'>
+                                    <div class='post-heading'>
+                                        <div class='pull-left image'>
+                                            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSgJ2_u9xXrMkZgeDbjhsE29U8IlU9_TDcr2h9_C3MpTKH47pP'
+                                                 class='img-circle avatar' alt='user profile image'
+                                                 style='height:50px;width:50px'>
+                                        </div><div class='pull-left meta'>
+                                            <div class='title h5'>
+                                                <a><b>Vy</b></a>
+                                            </div>
+                                            <h6 class='text-muted time'>23/2/2018 11:11</h6>
+                                        </div>
+                                    </div>
+                                    <div class='post-description' style="padding-left:20px;padding-top:10px">
+                                        Đồ ăn ngon
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='row col-md-12'>
+                                <div class='panel panel-white post panel-shadow col-md-12'>
+                                    <div class='post-heading'>
+                                        <div class='pull-left image'>
+                                            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSgJ2_u9xXrMkZgeDbjhsE29U8IlU9_TDcr2h9_C3MpTKH47pP'
+                                                 class='img-circle avatar' alt='user profile image'
+                                                 style='height:50px;width:50px'>
+                                        </div><div class='pull-left meta'>
+                                            <div class='title h5'>
+                                                <a><b>Nam</b></a>
+                                            </div>
+                                            <h6 class='text-muted time'>25/2/2018 11:11</h6>
+                                        </div>
+                                    </div>
+                                    <div class='post-description' style="padding-left:20px;padding-top:10px">
+                                        Phục vụ tốt
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    loadComment();
+    function loadComment() {
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/Home/GetAllBinhLuan",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: {
+            },
+            success: function (data) {
+                $("#comments").html("");
+                $.each(data, function (key, i) {
+                    $("#comments").append(" <div class='row col-md-12'>"+
+                                "<div class='panel panel-white post panel-shadow col-md-12'>"+
+                                    "<div class='post-heading'>"+
+                                        "<div class='pull-left image'>"+
+                                            "<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSgJ2_u9xXrMkZgeDbjhsE29U8IlU9_TDcr2h9_C3MpTKH47pP'" +
+                                                 "class='avatar' alt='user profile image'"+
+                                         "style='height:50px;width:50px'>"+
+                                        "</div><div class='pull-left meta'>"+
+                                            "<div class='title h5'>"+
+                                                "<a><b>"+i.tenKH+"</b></a>"+
+                                           " </div>"+
+                                           " <h6 class='text-muted time'>"+i.thoiGian+"</h6>"+
+                                       " </div>"+
+                                    "</div>"+
+                                    "<div class='post-description' style='padding-left:20px;padding-top:10px'>"+
+                                         i.noiDung +
+                                   " </div>"+
+                            "    </div>"+
+                           " </div>");
+                })
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Lỗi!" + errorThrown);
+            }
+        });
+    }
+    function AddComment(nd) {
+        var id = $("#username").text();
+        if (id == "") {
+            alert("Vui lòng đăng nhập để thực hiện chức năng bình luận");
+        } else {
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/Home/AddBinhLuan",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: {
+                maKH: 'KH000001',//$("#userid").text(),
+                noiDung: nd
+            },
+            success: function (data) {
+                if (data == 1) {
+                    loadComment();
+                } else {
+                    alert("Vui lòng nhập nội dung bình luận");
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Lỗi!" + errorThrown);
+            }
+        });
+
+        }
+        }
+</script>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Red Velvet restaurant</title>
+    @*<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,700,300italic' rel='stylesheet' type='text/css'>*@
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/Content/nivo-lightbox.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/owl.transitions.css" rel="stylesheet" />
+    <link href="~/Content/owl.theme.css" rel="stylesheet" />
+    <link href="~/Content/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/default.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css.map" />
+    @*<link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+</head>
+<body>
+    <!-- STRAT SCROLL TO TOP -->
+    @{
+        Html.RenderPartial("_PartialHeader");
+
+    }
+    <div class="scrollup">
+        <a href="#"><i class="fa fa-chevron-up"></i></a>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+   
+</body>
+</html>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.easing.1.3.js"></script>
+<script src="~/Scripts/jquery.fancybox.pack.js"></script>
+<script src="~/Scripts/nivo-lightbox.min.js"></script>
+<script src="~/Scripts/owl.carousel.min.js"></script>
+<script src="~/Scripts/script.js"></script>
+<script src="~/Scripts/wow.min.js"></script>

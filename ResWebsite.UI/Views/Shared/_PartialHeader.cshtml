@@ -1,0 +1,168 @@
+﻿<div class='preloader'><div class='loaded'>&nbsp;</div></div>
+<header id="home" class="header">
+    <div class="main_menu_bg navbar-fixed-top wow">
+        <div class="container">
+            <div class="row">
+                <div class="nave_menu">
+
+                    <nav class="navbar navbar-default">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        </div><!-- /.navbar-collapse -->
+                        <div class="container-fluid">
+                            @* Brand and toggle get grouped for better mobile display*@
+                            <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+
+                                </div>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <ul class="nav navbar-nav navbar-left">
+                                <li class="active"><a href="/Home/Index">TRANG CHỦ</a></li>
+                                <li><a onclick="Reserve()">ĐẶT BÀN</a></li>
+                                <li><a href="#rooms">PHÒNG</a></li>
+                                <li><a href="#menus">THỰC ĐƠN</a></li>
+                                <li><a href="#about">BÌNH LUẬN</a></li>
+                                <li><a href="#contact">LIÊN HỆ</a></li>
+                                <li onclick="MyCart($('#userid').text())"><a><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
+                                <li id="username"><a>@*@ViewBag.name*@Nam</a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                        <i class="fa fa-user fa-fw"></i>
+                                        <i class="fa fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li>
+                                            <a>
+                                                <i class="fa fa-user fa-fw"></i> Trang cá nhân
+                                            </a>
+                                        </li>
+                                        <li data-toggle="modal" data-target="#login">
+                                            <a>
+                                                <i class="fa fa-gear fa-fw"></i> Đăng nhập
+                                            </a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li onclick="Logout()">
+                                            <a href="#">
+                                                <i class="fa fa-sign-out fa-fw"></i> Đăng xuất
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.dropdown-user -->
+                                </li>
+                                
+                            </ul>
+
+                            <div id="userid" hidden>KH000001@*@ViewBag.id*@</div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Thông tin tìm kiếm" id="searchval" name="search">
+                                <div class="input-group-btn">
+                                    <input class="form-control" type="button" onclick="Search($('#searchval').val());" value="Search" style="margin-top:0" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.container-fluid -->
+                    </nav>
+                </div>
+            </div><!--End of row -->
+
+        </div><!--End of container -->
+
+    </div>
+</header> <!--End of header -->
+<div class="modal fade" id="mycart" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> DANH SÁCH MÓN ĂN ĐÃ ĐẶT </h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover" id="tablecart">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên món</th>
+                            <th>Đơn giá</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Begin login modal -->
+<div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> ĐĂNG NHẬP </h4>
+            </div>
+            <div class="modal-body">
+                Email:
+                <input class="form-control" placeholder="Username" value="vyjung96@gmail.com" id="email" type="text" autofocus>
+                @*<div class="form-group">
+                        <input class="form-control" placeholder="Password" id="password" type="password">
+                    </div>*@
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" onclick="Login($('#email').val());">Đăng nhập</button>
+                <button class="btn btn-info" onclick="Login('guest@gmail.com');">Không dùng tài khoản</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đăng kí</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End login-->
+<script>
+    function Logout() {
+        $("#username").text("");
+        $("#userid").text("");
+    }
+    function Search(value) {
+        $("#searchresult").html("");
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "/Home/SearchMealDrink",
+            contentType: "application/json; chakirset=utf-8",
+            dataType: "json",
+            data: {
+                name: value
+            },
+            success: function (data) {
+                if (data != null) {
+                    $("#searchresult").append("<div class='container' id='result' style='background:#4cff00;'><h2>KẾT QUẢ TÌM KIẾM</h2>");
+                    $.each(data, function (key, i) { 
+                        $("#result").append("<div class='col-md-2 col-sm-4 col-xs-6 single_special' data-toggle='modal' onclick='ShowDetail('" + i.MealDrinkId + "');' data-target='#myModal'>" +
+                    "<div class='single_special_img'>" +
+                        "<img src=" + i.Picture + " alt=" + i.Name + " class='img-thumbnail myimg' />" +
+                        "<div class='single_special_overlay text-center'>" +
+                            "<h3>" + i.Name + "</h3>" +
+                            "<div class='overlay_separetor'></div>" +
+                            "<p>" + i.Price + "000 VND</p></div></div></div>");
+                    })
+                    $("#searchresult").append("</div>");
+                } else alert("Không tìm thấy kết quả nào!");
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("Vui lòng nhập thông tin tìm kiếm!" + errorThrown);
+            }
+        });
+    }
+  
+</script>
+<script src="~/Scripts/Home/load-all-meal.js"></script>

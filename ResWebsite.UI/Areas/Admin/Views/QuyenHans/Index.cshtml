@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ResWebsite.DAL.Entity1.QuyenHan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/plugins/bootbox.min.js"></script>
+<script src="~/Scripts/plugins/jquery.twbsPagination.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Controllers/quyenHanController.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Danh sách quyền </h3>
+    </div>
+</div>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page">Trang chủ</li>
+        <li class="breadcrumb-item " aria-current="page">Thiết lập hệ thống</li>
+        <li class="breadcrumb-item " aria-current="page">Quản lý nghiệp vụ</li>
+        <li class="breadcrumb-item active" aria-current="page">Danh sách quyền</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-4">
+        <input id="txtInformationSearch" type="text" class="form-control" placeholder="Nhập tên quyền hạn"/>
+        <div id="timMa" hidden></div>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-primary" id="btnSearch">Tìm kiếm</button>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-primary" id="btnResetSearch">Hủy tìm kiếm</button>
+    </div>
+</div><br />
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên quyền hạn
+                    </th>
+                    <th>
+                        Mã nghiệp vụ
+                    </th>
+                    <th>
+                        Mô tả
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="listQuyenHans">
+            </tbody>
+        </table>
+        <div id="pagination" class="pagination">
+
+        </div>
+    </div>
+</div>
+@RenderPage("_XemChiTietQuyenHan.cshtml")
+
